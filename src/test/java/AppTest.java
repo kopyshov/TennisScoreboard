@@ -2,16 +2,30 @@ import com.kharizma.tennisscoreboard.models.Player;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 public class AppTest {
-    @Test
-    public void JpaExample() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Player_PU");
+    EntityManagerFactory emf;
+    EntityManager entityManager;
 
-        EntityManager entityManager = emf.createEntityManager();
+    @BeforeEach
+    public void initializeEMF() {
+        emf = Persistence.createEntityManagerFactory("Player_PU");
+        entityManager = emf.createEntityManager();
+    }
+
+    @AfterEach
+    public void closeEMF() {
+        entityManager.close();
+    }
+
+    @Test
+    public void addSomePlayersAndShow() {
+
         entityManager.getTransaction().begin();
 
         Player s1 = new Player();
@@ -25,12 +39,9 @@ public class AppTest {
 
         entityManager.getTransaction().commit();
 
-        entityManager = emf.createEntityManager();
-
-
         List<Player> list = entityManager.createQuery("from Player ").getResultList();
         list.forEach(p -> System.out.println(p.getName()));
 
-        entityManager.close();
+
     }
 }

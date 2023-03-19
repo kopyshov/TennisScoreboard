@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Initialize Project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add persistence units and test them">
+      <change beforePath="$PROJECT_DIR$/src/test/java/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +47,21 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.AppTest.JpaExample">
-    <configuration name="AppTest.JpaExample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AppTest">
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TennisScoreboard" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="AppTest" />
-      <option name="METHOD_NAME" value="JpaExample" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.addSomePlayersAndShow" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TennisScoreboard" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AppTest" />
+      <option name="METHOD_NAME" value="addSomePlayersAndShow" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -86,7 +90,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AppTest.JpaExample" />
+        <item itemvalue="JUnit.AppTest" />
+        <item itemvalue="JUnit.AppTest.addSomePlayersAndShow" />
       </list>
     </recent_temporary>
   </component>
@@ -99,7 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679259445807</updated>
       <workItem from="1679259446919" duration="604000" />
-      <workItem from="1679260076638" duration="3203000" />
+      <workItem from="1679260076638" duration="3556000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Project">
       <created>1679259765483</created>
@@ -108,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679259765483</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add persistence units and test them">
+      <created>1679263668126</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1679263668126</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,6 +128,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialize Project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialize Project" />
+    <MESSAGE value="Add persistence units and test them" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add persistence units and test them" />
   </component>
 </project>
