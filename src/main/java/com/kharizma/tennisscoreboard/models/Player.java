@@ -3,6 +3,7 @@ package com.kharizma.tennisscoreboard.models;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "PLAYER")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

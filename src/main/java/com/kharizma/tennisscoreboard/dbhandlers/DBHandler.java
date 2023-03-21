@@ -1,26 +1,26 @@
 package com.kharizma.tennisscoreboard.dbhandlers;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class DBHandler {
-    public static DBHandler instance;
-    EntityManager entityManager;
+    private static SessionFactory sessionFactory;
 
     private DBHandler() {
     }
 
-    public static DBHandler getInstance() {
-        if(instance==null){
-            instance = new DBHandler();
+    public static SessionFactory getSessionFactory() {
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure()
+                .build();
+        try {
+            sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
         }
-        return instance;
-    }
-
-    public EntityManager getEntityManager(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TennisScoreboard_PU");
-        entityManager = emf.createEntityManager();
-        return entityManager;
+        catch (Exception e) {
+            StandardServiceRegistryBuilder.destroy( registry );
+        }
+        return sessionFactory;
     }
 }

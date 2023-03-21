@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard;
+package com.kharizma.tennisscoreboard.servlets;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
