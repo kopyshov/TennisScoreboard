@@ -2,22 +2,24 @@ package com.kharizma.tennisscoreboard.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+import java.util.UUID;
+
 @Entity
 @Table(name = "PLAYER")
-public class Player {
+public class Player implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PLAYER_ID")
-    private Long id;
+    private UUID id;
 
     @Column(name = "NAME")
     private String name;
 
-    public void setId(Long id) {
-        this.id = id;
+    public Player() {
+        id = UUID.randomUUID();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 

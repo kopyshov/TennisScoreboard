@@ -7,6 +7,11 @@
 <body>
 <h1>Таблица счета</h1>
 <br/>
-<a href="new-match">Добавить матч</a>
+<div>
+    <button onclick="location.href='/new-match'">Добавить матч</button>
+</div>
+<div>
+    <button onclick="location.href='/matches'">Показать все матчи</button>
+</div>
 </body>
 </html>

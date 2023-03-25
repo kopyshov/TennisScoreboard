@@ -2,13 +2,14 @@ package com.kharizma.tennisscoreboard.models;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "MATCH")
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MATCH_ID")
-    private Long id;
+    private UUID id;
 
     @OneToOne
     @JoinColumn(name = "PLAYER_ONE", referencedColumnName = "PLAYER_ID")
@@ -22,8 +23,14 @@ public class Match {
     @JoinColumn(name = "WINNER", referencedColumnName = "PLAYER_ID")
     private Player winner;
 
+    @Transient
+    private int[] score = new int[2];
 
-    public Long getId() {
+    public Match() {
+        id = UUID.randomUUID();
+    }
+
+    public UUID getId() {
         return id;
     }
 
@@ -49,6 +56,17 @@ public class Match {
 
     public void setWinner(Player winner) {
         this.winner = winner;
+    }
+
+    public int[] getScore() {
+        return score;
+    }
+    public void playerOneWonPoint(int[] score) {
+        score[0] = score[0] + 1;
+    }
+
+    public void playerTwoWonPoint(int[] score) {
+        score[1] = score[1] + 1;
     }
 }
 
