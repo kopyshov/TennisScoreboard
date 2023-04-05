@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>Текущий матч</title>
+    <link href="https://allfont.ru/allfont.css?fonts=a_lcdnova" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 <div>
@@ -11,9 +13,9 @@
         </tr>
         <tr>
             <th>Имя</th>
-            <th>Sets</th>
-            <th>Games</th>
             <th>Points</th>
+            <th>Set 1</th>
+            <th>Set 2</th>
             <th></th>
         </tr>
         <tr>

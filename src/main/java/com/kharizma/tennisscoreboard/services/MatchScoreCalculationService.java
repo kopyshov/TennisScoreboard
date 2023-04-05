@@ -1,7 +1,6 @@
 package com.kharizma.tennisscoreboard.services;
 
 import com.kharizma.tennisscoreboard.models.Match;
-import com.kharizma.tennisscoreboard.models.Score;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +16,10 @@ public class MatchScoreCalculationService implements IService{
     private CurrentMatchService currentMatchService;
     private Map<UUID, Match> matches;
     private Match currentMatch;
+
+    private final static int PLAYER_ONE = 1;
+    private final static int PLAYER_TWO = 2;
+
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         setAttributes(servletRequest);
@@ -30,12 +33,12 @@ public class MatchScoreCalculationService implements IService{
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID uuid = UUID.fromString(servletRequest.getParameter("playerId"));
         if(currentMatch.getPlayerOne().getId().equals(uuid)) {
-            currentMatch.getScore().wonPoint(Score.Players.ONE);
+            currentMatch.playerWon(PLAYER_ONE);
         }
         if (currentMatch.getPlayerTwo().getId().equals(uuid)){
-            currentMatch.getScore().wonPoint(Score.Players.TWO);
+            currentMatch.playerWon(PLAYER_TWO);
         }
-        if(currentMatch.isGameOver()) {
+        if(currentMatch.getScore().getPlayerOneSets() == 2 || currentMatch.getScore().getPlayerTwoSets() == 2) {
             setAttributes(servletRequest);
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/gameover.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);

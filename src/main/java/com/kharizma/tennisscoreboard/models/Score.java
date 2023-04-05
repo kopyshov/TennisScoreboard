@@ -9,6 +9,8 @@ public class Score {
     private int playerTwoGames;
     private Point playerTwoPoints;
 
+    private boolean gameIsEqual;
+
     enum Point {ZERO(0), FIRST(15), SECOND(30), THIRD(40);
 
         private final int value;
@@ -26,49 +28,117 @@ public class Score {
     }
 
     public Score() {
-        this.playerOneSets = 0;
-        this.playerOneGames = 0;
         this.playerOnePoints = Point.ZERO;
+        this.playerOneGames = 0;
 
-        this.playerTwoSets = 0;
-        this.playerTwoGames = 0;
         this.playerTwoPoints = Point.ZERO;
-    }
+        this.playerTwoGames = 0;
 
-    public void wonPoint(Players player) {
+    }
+    public void countGames(Players pointWinner) {
+
+    }
+    public void wonPoint(int player) {
         Point[] values = Point.values();
         switch (player) {
-            case ONE -> {
-                if(playerOnePoints == Point.THIRD) {
-                    if(playerOneGames < 5) {
-                        playerOneGames++;
+            case 1 -> {
+                if (gameIsEqual) {
+                    if (isBigger()) {
+                        playerOneWonGame();
                     } else {
-                        playerOneGames = 0;
-                        playerOneSets++;
+                        if (playerOnePoints.equals(Point.THIRD)) {
+                            playerOnePoints = Point.FIRST;
+                            playerTwoPoints = Point.ZERO;
+                        } else {
+                            int currentIndex = playerOnePoints.ordinal();
+                            int nextIndex = currentIndex + 1;
+                            playerOnePoints = values[nextIndex];
+                            if(isBigger()) {
+                                playerOneWonGame();
+                            }
+                        }
+                    }
+                } else {
+                    int currentIndex = playerOnePoints.ordinal();
+                    if(currentIndex == 4) {
+                        playerOneWonGame();
+                    } else {
+                        int nextIndex = (currentIndex + 1) % values.length;
+                        playerOnePoints = values[nextIndex];
                     }
                 }
-                int currentIndex = playerOnePoints.ordinal();
-                int nextIndex = (currentIndex + 1) % values.length;
-                playerOnePoints = values[nextIndex];
             }
-            case TWO -> {
-                if(playerTwoPoints == Point.THIRD) {
-                    if(playerTwoGames < 5) {
-                        playerTwoGames++;
+            case 2 -> {
+                if (gameIsEqual) {
+                    if (isBigger()) {
+                        playerTwoWonGame();
                     } else {
-                        playerTwoGames = 0;
-                        playerTwoSets++;
+                        if (playerTwoPoints.equals(Point.THIRD)) {
+                            playerOnePoints = Point.ZERO;
+                            playerTwoPoints = Point.FIRST;
+                        } else {
+                            int currentIndex = playerTwoPoints.ordinal();
+                            int nextIndex = currentIndex + 1;
+                            playerTwoPoints = values[nextIndex];
+                            if(isBigger()) {
+                                playerTwoWonGame();
+                            }
+                        }
+                    }
+                } else {
+                    int currentIndex = playerTwoPoints.ordinal();
+                    if(currentIndex == 4) {
+                        playerTwoWonGame();
+                    } else {
+                        int nextIndex = (currentIndex + 1) % values.length;
+                        playerTwoPoints = values[nextIndex];
                     }
                 }
-                int currentIndex = playerTwoPoints.ordinal();
-                int nextIndex = (currentIndex + 1) % values.length;
-                playerTwoPoints = values[nextIndex];
             }
         }
+        if(playerOnePoints.equals(Point.THIRD) & playerTwoPoints.equals(Point.THIRD)) {
+            gameIsEqual = true;
+        }
+    }
+
+    private void playerOneWonGame() {
+        playerOneGames++;
+        playerOnePoints = Point.ZERO;
+        playerTwoPoints = Point.ZERO;
+    }
+
+    private void playerTwoWonGame() {
+        playerTwoGames++;
+        playerOnePoints = Point.ZERO;
+        playerTwoPoints = Point.ZERO;
+    }
+
+    private boolean isBigger() {
+        return Math.abs(playerOnePoints.ordinal() - playerTwoPoints.ordinal()) > 1;
+    }
+
+    public void setPlayerOneGames(int playerOneGames) {
+        this.playerOneGames = playerOneGames;
+    }
+
+    public void setPlayerTwoGames(int playerTwoGames) {
+        this.playerTwoGames = playerTwoGames;
     }
 
     public int getPlayerOneSets() {
         return playerOneSets;
+    }
+
+    public void setPlayerOneSets(int playerOneSets) {
+        this.playerOneSets = playerOneSets;
+    }
+
+    public int getPlayerTwoSets() {
+        return playerTwoSets;
+    }
+
+    public void setPlayerTwoSets(int playerTwoSets) {
+        this.playerTwoSets = playerTwoSets;
     }
 
     public int getPlayerOneGames() {
@@ -79,9 +149,6 @@ public class Score {
         return playerOnePoints.getValue();
     }
 
-    public int getPlayerTwoSets() {
-        return playerTwoSets;
-    }
 
     public int getPlayerTwoGames() {
         return playerTwoGames;

@@ -23,12 +23,55 @@ public class Match implements Serializable {
 
     @Transient
     private Score score;
+    @Transient
+    private boolean setOneIsGoing;
+
+    @Transient
+    private final static int PLAYER_ONE = 1;
+    @Transient
+    private final static int PLAYER_TWO = 2;
 
     public Match() {
         this.score = new Score();
+        setOneIsGoing = true;
     }
 
+    public void playerWon (int player) {
+        if (player == PLAYER_ONE) {
+            if (isBigger()) {
+                if (score.getPlayerOneGames() > 4) {
+                    score.setPlayerOneSets(score.getPlayerOneSets() + 1);
+                    score.setPlayerOneGames(0);
+                    score.setPlayerTwoGames(0);
+                    setOneIsGoing = false;
+                } else {
+                    score.wonPoint(PLAYER_ONE);
+                }
+            } else {
+                score.setPlayerOneGames(score.getPlayerOneGames() + 1);
+                setOneIsGoing = false;
+            }
+        }
+        if (player == PLAYER_TWO) {
+            if(isBigger()) {
+                if (score.getPlayerTwoGames() > 4) {
+                    score.setPlayerTwoSets(score.getPlayerTwoSets() + 1);
+                    score.setPlayerOneGames(0);
+                    score.setPlayerTwoGames(0);
+                    setOneIsGoing = false;
+                } else {
+                    score.wonPoint(PLAYER_TWO);
+                }
+            } else {
+                score.setPlayerTwoGames(score.getPlayerTwoGames() + 1);
+                setOneIsGoing = false;
+            }
+        }
+    }
 
+    private boolean isBigger() {
+        return Math.abs(score.getPlayerOneGames() - score.getPlayerTwoGames()) > 1;
+    }
 
     public UUID getId() {
         return id;
@@ -62,23 +105,12 @@ public class Match implements Serializable {
         this.winner = winner;
     }
 
-    public Score getScore() {
-        return score;
+    public boolean isSetOneIsGoing() {
+        return setOneIsGoing;
     }
 
-    public boolean isGameOver() {
-        if(score.getPlayerOneSets() == 2)
-        {
-            this.setWinner(playerOne);
-            return true;
-        }
-        if(score.getPlayerTwoSets() == 2) {
-            this.setWinner(playerTwo);
-            return true;
-        }
-        else {
-            return false;
-        }
+    public Score getScore() {
+        return score;
     }
 }
 

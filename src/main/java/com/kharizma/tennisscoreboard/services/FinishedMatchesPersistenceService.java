@@ -80,7 +80,6 @@ public class FinishedMatchesPersistenceService implements IService{
             UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
             CurrentMatchService currentMatchService = CurrentMatchService.getInstance();
             Match currentMatch = currentMatchService.getMatch(MatchUuid);
-            //currentMatch.setWinner(currentMatch.getPlayerOne());
             session.save(currentMatch);
             transaction.commit();
         } catch (Exception e) {
