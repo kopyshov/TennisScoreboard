@@ -11,7 +11,7 @@
     <button onclick="location.href='/new-match'">Добавить матч</button>
 </div>
 <div>
-    <button onclick="location.href='/matches'">Показать все матчи</button>
+    <button onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
 </div>
 </body>
 </html>

@@ -2,36 +2,40 @@ package com.kharizma.tennisscoreboard.models;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Table(name = "MATCH")
-public class Match {
+public class Match implements Serializable {
     @Id
     @Column(name = "MATCH_ID")
     private UUID id;
 
-    @OneToOne
-    @JoinColumn(name = "PLAYER_ONE", referencedColumnName = "PLAYER_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Player playerOne;
 
-    @OneToOne
-    @JoinColumn(name = "PLAYER_TWO", referencedColumnName = "PLAYER_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Player playerTwo;
 
-    @OneToOne
-    @JoinColumn(name = "WINNER", referencedColumnName = "PLAYER_ID")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Player winner;
 
     @Transient
-    private int[] score = new int[2];
+    private Score score;
 
     public Match() {
-        id = UUID.randomUUID();
+        this.score = new Score();
     }
+
+
 
     public UUID getId() {
         return id;
+    }
+
+    public void setId() {
+        id = UUID.randomUUID();
     }
 
     public Player getPlayerOne() {
@@ -58,15 +62,23 @@ public class Match {
         this.winner = winner;
     }
 
-    public int[] getScore() {
+    public Score getScore() {
         return score;
     }
-    public void playerOneWonPoint(int[] score) {
-        score[0] = score[0] + 1;
-    }
 
-    public void playerTwoWonPoint(int[] score) {
-        score[1] = score[1] + 1;
+    public boolean isGameOver() {
+        if(score.getPlayerOneSets() == 2)
+        {
+            this.setWinner(playerOne);
+            return true;
+        }
+        if(score.getPlayerTwoSets() == 2) {
+            this.setWinner(playerTwo);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 

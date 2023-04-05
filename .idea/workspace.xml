@@ -9,32 +9,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add hibernate.cfg.xml, fix BDHandler">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/IService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/MatchScoreCalculationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/StartPageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/match.jsp" afterDir="false" />
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Rewriting all classes...">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Score.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/gameover.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/matches.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dbhandlers/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dbhandlers/DBHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/servlets/CreateServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/servlets/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/MatchScoreCalculationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/MatchScoreCalculationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/match.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/match.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -85,6 +90,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Projects\JAVA\ProjectPets\TennisScoreboard\src\main\webapp" />
+    </key>
+  </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.5">
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="TennisScoreboard" />
@@ -225,7 +235,11 @@
       <workItem from="1679677327001" duration="10975000" />
       <workItem from="1679728010509" duration="1250000" />
       <workItem from="1679729523782" duration="9647000" />
-      <workItem from="1679757976417" duration="4589000" />
+      <workItem from="1679757976417" duration="20212000" />
+      <workItem from="1679815660504" duration="22421000" />
+      <workItem from="1680435557239" duration="22361000" />
+      <workItem from="1680504359833" duration="23527000" />
+      <workItem from="1680597471529" duration="21056000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Project">
       <created>1679259765483</created>
@@ -262,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679437185105</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Rewriting all classes...">
+      <created>1679764905736</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1679764905736</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,6 +306,7 @@
     <MESSAGE value="Fix tests" />
     <MESSAGE value="Add DBHandler and test it" />
     <MESSAGE value="Add hibernate.cfg.xml, fix BDHandler" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add hibernate.cfg.xml, fix BDHandler" />
+    <MESSAGE value="Rewriting all classes..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Rewriting all classes..." />
   </component>
 </project>

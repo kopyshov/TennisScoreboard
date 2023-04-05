@@ -27,7 +27,7 @@ public class MainController {
     public void handlePostRequest(HttpServletRequest servletRequest,
                                  HttpServletResponse servletResponse) throws ServletException, IOException {
         String servletPath = servletRequest.getServletPath();
-        service = services.get(servletPath);  //substring(0, servletPath.indexOf("?"))
+        service = services.get(servletPath);
         service.executePost(servletRequest, servletResponse);
     }
 

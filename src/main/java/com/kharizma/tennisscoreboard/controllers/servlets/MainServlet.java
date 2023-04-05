@@ -2,6 +2,7 @@ package com.kharizma.tennisscoreboard.controllers.servlets;
 
 import com.kharizma.tennisscoreboard.controllers.MainController;
 import com.kharizma.tennisscoreboard.services.CurrentMatchService;
+import com.kharizma.tennisscoreboard.services.FinishedMatchesPersistenceService;
 import com.kharizma.tennisscoreboard.services.MatchScoreCalculationService;
 import com.kharizma.tennisscoreboard.services.StartPageService;
 import jakarta.servlet.ServletException;
@@ -24,6 +25,8 @@ public class MainServlet extends HttpServlet {
         mainController.addServices("/", new StartPageService());
         mainController.addServices("/new-match", CurrentMatchService.getInstance());
         mainController.addServices("/match-score", new MatchScoreCalculationService());
+        //mainController.addServices("/finish-match", new FinishedMatchesPersistenceService());
+        mainController.addServices("/matches", new FinishedMatchesPersistenceService());
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

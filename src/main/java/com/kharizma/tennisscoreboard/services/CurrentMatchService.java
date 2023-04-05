@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,8 +21,8 @@ import java.util.UUID;
 public class CurrentMatchService implements IService {
 
     public static CurrentMatchService instance;
-    private final SessionFactory sessionFactory;
-    private final Map<UUID, Match> matches = new HashMap<>();
+    private SessionFactory sessionFactory;
+    private Map<UUID, Match> matches = new HashMap<>();
 
     private CurrentMatchService() {
         sessionFactory = DBHandler.getSessionFactory();
@@ -58,6 +59,7 @@ public class CurrentMatchService implements IService {
         Player player2 = this.insertPlayer(playerName2);
 
         currentMatch = new Match();
+        currentMatch.setId();
         currentMatch.setPlayerOne(player1);
         currentMatch.setPlayerTwo(player2);
 
@@ -67,20 +69,36 @@ public class CurrentMatchService implements IService {
     }
 
     public Player insertPlayer(String name) {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        Query query = session.createQuery("from Player where name = :name ");
-        query.setParameter("name", name);
-        Player player;
-        try {
-            player = (Player) query.getSingleResult();
-        } catch (NoResultException nre) {
-            player = new Player();
-            player.setName(name);
+        Transaction transaction = null;
+        Player player = null;
+        try (Session session = sessionFactory.openSession();) {
+            transaction = session.beginTransaction();
+            Query query = session.createQuery("from Player where name = :name ");
+            query.setParameter("name", name);
+            try {
+                player = (Player) query.getSingleResult();
+            } catch (NoResultException nre) {
+                player = new Player();
+                player.generateId();
+                player.setName(name);
+            }
+            session.save(player);
+            transaction.commit();
+            session.close();
+        }catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
         }
-        session.persist(player);
-        session.getTransaction().commit();
-        session.close();
         return player;
+    }
+
+    public Map<UUID, Match> getMatches() {
+        return matches;
+    }
+
+    public Match getMatch(UUID uuid) {
+        return matches.get(uuid);
     }
 }
