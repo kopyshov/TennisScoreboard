@@ -11,16 +11,19 @@
     </tr>
     <tr>
       <th>Имя</th>
-      <th>Sets</th>
+      <th>Set One</th>
+      <th>Set Two</th>
       <th></th>
     </tr>
     <tr>
       <td>${playerOneName}</td>
-      <td>${playerOneSets}</td>
+      <td>${playerOneSetOne}</td>
+      <td>${playerOneSetTwo}</td>
     </tr>
     <tr>
       <td>${playerTwoName}</td>
-      <td>${playerTwoSets}</td>
+      <td>${playerTwoSetOne}</td>
+      <td>${playerTwoSetTwo}</td>
     </tr>
     <tr>
       <td>

@@ -17,8 +17,16 @@ public class MatchScoreCalculationService implements IService{
     private Map<UUID, Match> matches;
     private Match currentMatch;
 
-    private final static int PLAYER_ONE = 1;
-    private final static int PLAYER_TWO = 2;
+    private static final int PLAYER_ONE = 0;
+    private static final int PLAYER_TWO = 1;
+    public static final int SET_ONE = 0;
+    public static final int SET_TWO = 1;
+    private static final int LOVE = 0;
+    private static final int FIFTEEN = 1;
+    private static final int THIRTY = 2;
+    private static final int FORTY = 3;
+    private static final int[] PTS_ARRAY = new int[] {0, 15, 30, 40};
+
 
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
@@ -33,12 +41,12 @@ public class MatchScoreCalculationService implements IService{
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID uuid = UUID.fromString(servletRequest.getParameter("playerId"));
         if(currentMatch.getPlayerOne().getId().equals(uuid)) {
-            currentMatch.playerWon(PLAYER_ONE);
+            currentMatch.getScore().wonPoints(PLAYER_ONE);
         }
         if (currentMatch.getPlayerTwo().getId().equals(uuid)){
-            currentMatch.playerWon(PLAYER_TWO);
+            currentMatch.getScore().wonPoints(PLAYER_TWO);
         }
-        if(currentMatch.getScore().getPlayerOneSets() == 2 || currentMatch.getScore().getPlayerTwoSets() == 2) {
+        if(currentMatch.getScore().isFinishMatch()) {
             setAttributes(servletRequest);
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/gameover.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);
@@ -54,14 +62,14 @@ public class MatchScoreCalculationService implements IService{
         currentMatch = matches.get(currentMatchId);
         servletRequest.setAttribute("GameUuid", currentMatchId);
         servletRequest.setAttribute("playerOneName", currentMatch.getPlayerOne().getName());
-        servletRequest.setAttribute("playerOneSets", currentMatch.getScore().getPlayerOneSets());
-        servletRequest.setAttribute("playerOneGames", currentMatch.getScore().getPlayerOneGames());
-        servletRequest.setAttribute("playerOnePoints", currentMatch.getScore().getPlayerOnePoints());
+        servletRequest.setAttribute("playerOneSetOne", currentMatch.getScore().games[SET_ONE][PLAYER_ONE]);
+        servletRequest.setAttribute("playerOneSetTwo", currentMatch.getScore().games[SET_TWO][PLAYER_ONE]);
+        servletRequest.setAttribute("playerOnePoints", PTS_ARRAY[currentMatch.getScore().points[PLAYER_ONE]]);
 
         servletRequest.setAttribute("playerTwoName", currentMatch.getPlayerTwo().getName());
-        servletRequest.setAttribute("playerTwoSets", currentMatch.getScore().getPlayerTwoSets());
-        servletRequest.setAttribute("playerTwoGames", currentMatch.getScore().getPlayerTwoGames());
-        servletRequest.setAttribute("playerTwoPoints", currentMatch.getScore().getPlayerTwoPoints());
+        servletRequest.setAttribute("playerTwoSetOne", currentMatch.getScore().games[SET_ONE][PLAYER_TWO]);
+        servletRequest.setAttribute("playerTwoSetTwo", currentMatch.getScore().games[SET_TWO][PLAYER_TWO]);
+        servletRequest.setAttribute("playerTwoPoints", PTS_ARRAY[currentMatch.getScore().points[PLAYER_TWO]]);
 
         servletRequest.setAttribute("playerOneId", currentMatch.getPlayerOne().getId().toString());
         servletRequest.setAttribute("playerTwoId", currentMatch.getPlayerTwo().getId().toString());

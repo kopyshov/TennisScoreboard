@@ -20,9 +20,9 @@
         </tr>
         <tr>
             <td>${playerOneName}</td>
-            <td>${playerOneSets}</td>
-            <td>${playerOneGames}</td>
             <td>${playerOnePoints}</td>
+            <td>${playerOneSetOne}</td>
+            <td>${playerOneSetTwo}</td>
             <td>
                 <form method="post">
                     <button name="playerId" value="${playerOneId}">Добавить очко</button>
@@ -31,9 +31,9 @@
         </tr>
         <tr>
             <td>${playerTwoName}</td>
-            <td>${playerTwoSets}</td>
-            <td>${playerTwoGames}</td>
             <td>${playerTwoPoints}</td>
+            <td>${playerTwoSetOne}</td>
+            <td>${playerTwoSetTwo}</td>
             <td>
                 <form method="post">
                     <button name="playerId" value="${playerTwoId}">Добавить очко</button>

@@ -1,160 +1,99 @@
 package com.kharizma.tennisscoreboard.models;
 
 public class Score {
-    private int playerOneSets;
-    private int playerOneGames;
-    private Point playerOnePoints;
 
-    private int playerTwoSets;
-    private int playerTwoGames;
-    private Point playerTwoPoints;
+    public static final int PLAYER_ONE = 0;
+    public static final int PLAYER_TWO = 1;
+    public static final int SET_ONE = 0;
+    public static final int SET_TWO = 1;
+    private static final int LOVE = 0;
+    private static final int FIFTEEN = 1;
+    private static final int THIRTY = 2;
+    private static final int FORTY = 3;
+    public int[][] games = new int[2][2];
+    public int[] points = new int[2];
+    private int CURRENT_SET;
+    private boolean isDeuce;
+    private boolean isTieBreak;
+    private boolean finishMatch;
 
-    private boolean gameIsEqual;
-
-    enum Point {ZERO(0), FIRST(15), SECOND(30), THIRD(40);
-
-        private final int value;
-        Point(int value) {
-            this.value = value;
-        }
-
-        public int getValue() {
-            return value;
-        }
-    }
-
-    public enum Players {
-        ONE, TWO;
-    }
 
     public Score() {
-        this.playerOnePoints = Point.ZERO;
-        this.playerOneGames = 0;
+        finishMatch = false;
+        isDeuce = false;
+        isTieBreak = false;
+        CURRENT_SET = SET_ONE;
 
-        this.playerTwoPoints = Point.ZERO;
-        this.playerTwoGames = 0;
+        points[PLAYER_ONE] = LOVE;
+        points[PLAYER_TWO] = LOVE;
 
+        games[SET_ONE][PLAYER_ONE] = 0;
+        games[SET_ONE][PLAYER_TWO] = 0;
+        games[SET_TWO][PLAYER_ONE] = 0;
+        games[SET_TWO][PLAYER_TWO] = 0;
     }
-    public void countGames(Players pointWinner) {
-
-    }
-    public void wonPoint(int player) {
-        Point[] values = Point.values();
-        switch (player) {
-            case 1 -> {
-                if (gameIsEqual) {
-                    if (isBigger()) {
-                        playerOneWonGame();
-                    } else {
-                        if (playerOnePoints.equals(Point.THIRD)) {
-                            playerOnePoints = Point.FIRST;
-                            playerTwoPoints = Point.ZERO;
-                        } else {
-                            int currentIndex = playerOnePoints.ordinal();
-                            int nextIndex = currentIndex + 1;
-                            playerOnePoints = values[nextIndex];
-                            if(isBigger()) {
-                                playerOneWonGame();
-                            }
-                        }
-                    }
-                } else {
-                    int currentIndex = playerOnePoints.ordinal();
-                    if(currentIndex == 4) {
-                        playerOneWonGame();
-                    } else {
-                        int nextIndex = (currentIndex + 1) % values.length;
-                        playerOnePoints = values[nextIndex];
-                    }
+    public void wonPoints(int player) {
+        if(isTieBreak) {
+            games[CURRENT_SET][player]++;
+            if(isBigger()) {
+                if(++CURRENT_SET == 2) {
+                    finishMatch = true;
+                    return;
                 }
+                isTieBreak = false;
+                isDeuce = false;
             }
-            case 2 -> {
-                if (gameIsEqual) {
-                    if (isBigger()) {
-                        playerTwoWonGame();
-                    } else {
-                        if (playerTwoPoints.equals(Point.THIRD)) {
-                            playerOnePoints = Point.ZERO;
-                            playerTwoPoints = Point.FIRST;
-                        } else {
-                            int currentIndex = playerTwoPoints.ordinal();
-                            int nextIndex = currentIndex + 1;
-                            playerTwoPoints = values[nextIndex];
-                            if(isBigger()) {
-                                playerTwoWonGame();
-                            }
-                        }
-                    }
-                } else {
-                    int currentIndex = playerTwoPoints.ordinal();
-                    if(currentIndex == 4) {
-                        playerTwoWonGame();
-                    } else {
-                        int nextIndex = (currentIndex + 1) % values.length;
-                        playerTwoPoints = values[nextIndex];
-                    }
+        } else {
+            upPoints(player);
+            if(games[CURRENT_SET][player] > 5 & isBigger()) {
+                if(++CURRENT_SET == 2) {
+                    finishMatch = true;
+                    return;
                 }
             }
         }
-        if(playerOnePoints.equals(Point.THIRD) & playerTwoPoints.equals(Point.THIRD)) {
-            gameIsEqual = true;
+        if(CURRENT_SET < 2) {
+            if (games[CURRENT_SET][PLAYER_ONE] == 6 & games[CURRENT_SET][PLAYER_TWO] == 6) {
+                isTieBreak = true;
+            }
         }
     }
-
-    private void playerOneWonGame() {
-        playerOneGames++;
-        playerOnePoints = Point.ZERO;
-        playerTwoPoints = Point.ZERO;
+    private void upPoints(int player) {
+        if(isDeuce) {
+            if(isAdvantage()) {
+                points[PLAYER_ONE] = LOVE;
+                points[PLAYER_TWO] = LOVE;
+                games[CURRENT_SET][player]++;
+                isDeuce = false;
+            } else {
+                if(points[player] == FORTY) {
+                    points[player] = FIFTEEN;
+                    points[player^1] = LOVE;
+                } else {
+                    points[player]++;
+                }
+            }
+        } else {
+            if(points[player] == FORTY) {
+                points[PLAYER_ONE] = LOVE;
+                points[PLAYER_TWO] = LOVE;
+                games[CURRENT_SET][player]++;
+            } else {
+                points[player]++;
+            }
+        }
+        if(points[PLAYER_ONE] == FORTY & points[PLAYER_TWO] == FORTY) {
+            isDeuce = true;
+        }
     }
-
-    private void playerTwoWonGame() {
-        playerTwoGames++;
-        playerOnePoints = Point.ZERO;
-        playerTwoPoints = Point.ZERO;
+    private boolean isAdvantage() {
+        return Math.abs(points[PLAYER_ONE] - points[PLAYER_TWO]) > 1;
     }
-
     private boolean isBigger() {
-        return Math.abs(playerOnePoints.ordinal() - playerTwoPoints.ordinal()) > 1;
+        return Math.abs(games[CURRENT_SET][PLAYER_ONE] - games[CURRENT_SET][PLAYER_TWO]) > 1;
     }
 
-    public void setPlayerOneGames(int playerOneGames) {
-        this.playerOneGames = playerOneGames;
-    }
-
-    public void setPlayerTwoGames(int playerTwoGames) {
-        this.playerTwoGames = playerTwoGames;
-    }
-
-    public int getPlayerOneSets() {
-        return playerOneSets;
-    }
-
-    public void setPlayerOneSets(int playerOneSets) {
-        this.playerOneSets = playerOneSets;
-    }
-
-    public int getPlayerTwoSets() {
-        return playerTwoSets;
-    }
-
-    public void setPlayerTwoSets(int playerTwoSets) {
-        this.playerTwoSets = playerTwoSets;
-    }
-
-    public int getPlayerOneGames() {
-        return playerOneGames;
-    }
-
-    public int getPlayerOnePoints() {
-        return playerOnePoints.getValue();
-    }
-
-
-    public int getPlayerTwoGames() {
-        return playerTwoGames;
-    }
-
-    public int getPlayerTwoPoints() {
-        return playerTwoPoints.getValue();
+    public boolean isFinishMatch() {
+        return finishMatch;
     }
 }
