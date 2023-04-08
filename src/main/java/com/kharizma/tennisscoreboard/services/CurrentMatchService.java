@@ -71,7 +71,7 @@ public class CurrentMatchService implements IService {
     public Player insertPlayer(String name) {
         Transaction transaction = null;
         Player player = null;
-        try (Session session = DBHandler.getSessionFactory().openSession();) {
+        try (Session session = DBHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query query = session.createQuery(FIND_BY_NAME);
             query.setParameter("name", name);
@@ -85,7 +85,6 @@ public class CurrentMatchService implements IService {
             session.merge(player);
             session.flush();
             transaction.commit();
-            session.close();
         }catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

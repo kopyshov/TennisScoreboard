@@ -17,7 +17,7 @@ public class FinishedMatchesPersistenceService implements IService{
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String ALL_MATCHES = "from Match";
-    private static final int ONE_PAGE_LIMIT = 2;
+    private static final int ONE_PAGE_LIMIT = 3;
 
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
