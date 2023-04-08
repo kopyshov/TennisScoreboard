@@ -8,7 +8,6 @@ public class Score {
     public static final int SET_TWO = 1;
     private static final int LOVE = 0;
     private static final int FIFTEEN = 1;
-    private static final int THIRTY = 2;
     private static final int FORTY = 3;
     public int[][] games = new int[2][2];
     public int[] points = new int[2];
@@ -23,9 +22,6 @@ public class Score {
         isDeuce = false;
         isTieBreak = false;
         CURRENT_SET = SET_ONE;
-
-        points[PLAYER_ONE] = LOVE;
-        points[PLAYER_TWO] = LOVE;
 
         games[SET_ONE][PLAYER_ONE] = 0;
         games[SET_ONE][PLAYER_TWO] = 0;

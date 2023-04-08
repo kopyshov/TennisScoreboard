@@ -22,7 +22,7 @@ import java.util.UUID;
 @WebServlet(name = "main", urlPatterns = {"/"})
 public class MainServlet extends HttpServlet {
 
-    MainController mainController = new MainController();
+    private final MainController mainController = new MainController();
 
     @Override
     public void init() {

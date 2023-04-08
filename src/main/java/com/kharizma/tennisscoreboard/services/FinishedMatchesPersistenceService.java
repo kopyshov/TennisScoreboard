@@ -20,7 +20,7 @@ public class FinishedMatchesPersistenceService implements IService{
     private static final int ONE_PAGE_LIMIT = 3;
 
     @Override
-    public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
+    public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) {
         int pages;
         List matches;
         String playerName;
@@ -65,9 +65,6 @@ public class FinishedMatchesPersistenceService implements IService{
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/matches.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);
         } catch (Exception e) {
-/*            if (transaction != null) {
-                transaction.rollback();
-            }*/
             e.printStackTrace();
         }
     }

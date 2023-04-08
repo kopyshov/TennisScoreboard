@@ -15,7 +15,9 @@
 <div class="content">
   <form method="get" name="filter">
     <input type="hidden" name="page" value="1">
-    <input type="text" placeholder="имя игрока" name="filter_by_player_name">
+    <label>
+      <input type="text" placeholder="имя игрока" name="filter_by_player_name">
+    </label>
     <button type="submit">Найти</button>
   </form>
 </div>

@@ -13,18 +13,12 @@ import java.util.UUID;
 
 public class MatchScoreCalculationService implements IService{
 
-    private CurrentMatchService currentMatchService;
-    private Map<UUID, Match> matches;
     private Match currentMatch;
 
     private static final int PLAYER_ONE = 0;
     private static final int PLAYER_TWO = 1;
     public static final int SET_ONE = 0;
     public static final int SET_TWO = 1;
-    private static final int LOVE = 0;
-    private static final int FIFTEEN = 1;
-    private static final int THIRTY = 2;
-    private static final int FORTY = 3;
     private static final int[] PTS_ARRAY = new int[] {0, 15, 30, 40};
 
 
@@ -56,8 +50,8 @@ public class MatchScoreCalculationService implements IService{
     }
 
     private void setAttributes(HttpServletRequest servletRequest) {
-        currentMatchService = CurrentMatchService.getInstance();
-        matches = currentMatchService.getMatches();
+        CurrentMatchService currentMatchService = CurrentMatchService.getInstance();
+        Map<UUID, Match> matches = currentMatchService.getMatches();
         UUID currentMatchId = UUID.fromString(servletRequest.getParameter("uuid"));
         currentMatch = matches.get(currentMatchId);
         servletRequest.setAttribute("GameUuid", currentMatchId);

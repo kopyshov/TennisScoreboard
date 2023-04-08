@@ -21,7 +21,7 @@ import java.util.UUID;
 public class CurrentMatchService implements IService {
 
     public static CurrentMatchService instance;
-    private Map<UUID, Match> matches = new HashMap<>();
+    private final Map<UUID, Match> matches = new HashMap<>();
     private static final String FIND_BY_NAME = "from Player where name = :name ";
 
     private CurrentMatchService() {
