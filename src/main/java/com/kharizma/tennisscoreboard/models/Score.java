@@ -60,17 +60,16 @@ public class Score {
     }
     private void upPoints(int player) {
         if(isDeuce) {
+            points[player]++;
             if(isAdvantage()) {
                 points[PLAYER_ONE] = LOVE;
                 points[PLAYER_TWO] = LOVE;
                 games[CURRENT_SET][player]++;
                 isDeuce = false;
             } else {
-                if(points[player] == FORTY) {
+                if(points[player] > FORTY) {
                     points[player] = FIFTEEN;
                     points[player^1] = LOVE;
-                } else {
-                    points[player]++;
                 }
             }
         } else {
