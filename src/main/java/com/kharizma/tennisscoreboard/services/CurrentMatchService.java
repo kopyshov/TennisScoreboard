@@ -3,6 +3,7 @@ package com.kharizma.tennisscoreboard.services;
 import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
 import com.kharizma.tennisscoreboard.models.Match;
 import com.kharizma.tennisscoreboard.models.Player;
+import com.kharizma.tennisscoreboard.models.Score;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 import jakarta.servlet.RequestDispatcher;
@@ -10,7 +11,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.io.IOException;
@@ -21,11 +21,10 @@ import java.util.UUID;
 public class CurrentMatchService implements IService {
 
     public static CurrentMatchService instance;
-    private SessionFactory sessionFactory;
     private Map<UUID, Match> matches = new HashMap<>();
+    private static final String FIND_BY_NAME = "from Player where name = :name ";
 
     private CurrentMatchService() {
-        sessionFactory = DBHandler.getSessionFactory();
     }
 
     public static CurrentMatchService getInstance() {
@@ -58,10 +57,12 @@ public class CurrentMatchService implements IService {
         Player player1 = this.insertPlayer(playerName1);
         Player player2 = this.insertPlayer(playerName2);
 
-        currentMatch = new Match();
-        currentMatch.setId();
+        currentMatch = new Match(UUID.randomUUID());
+
         currentMatch.setPlayerOne(player1);
         currentMatch.setPlayerTwo(player2);
+        currentMatch.setScore(new Score());
+        System.out.println("!!!!!!!!!!!!!!CURRENT MATCH ID = " + currentMatch.getId());
 
         matches.put(currentMatch.getId(), currentMatch);
 
@@ -71,9 +72,9 @@ public class CurrentMatchService implements IService {
     public Player insertPlayer(String name) {
         Transaction transaction = null;
         Player player = null;
-        try (Session session = sessionFactory.openSession();) {
+        try (Session session = DBHandler.getSessionFactory().openSession();) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery("from Player where name = :name ");
+            Query query = session.createQuery(FIND_BY_NAME);
             query.setParameter("name", name);
             try {
                 player = (Player) query.getSingleResult();
@@ -82,7 +83,8 @@ public class CurrentMatchService implements IService {
                 player.generateId();
                 player.setName(name);
             }
-            session.save(player);
+            session.merge(player);
+            session.flush();
             transaction.commit();
             session.close();
         }catch (Exception e) {

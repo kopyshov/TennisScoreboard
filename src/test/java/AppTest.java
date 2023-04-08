@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -60,7 +59,7 @@ public class AppTest {
         Match match1= new Match();
         match1.setPlayerOne(s1);
         match1.setPlayerTwo(s2);
-        match1.setWinner(s1);
+        match1.setWinnerPlayer();
         
         entityManager.getTransaction().commit();
 

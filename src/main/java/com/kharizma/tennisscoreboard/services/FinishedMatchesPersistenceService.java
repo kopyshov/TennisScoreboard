@@ -76,11 +76,20 @@ public class FinishedMatchesPersistenceService implements IService{
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         Transaction transaction = null;
         try (Session session = DBHandler.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
+
             UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
             CurrentMatchService currentMatchService = CurrentMatchService.getInstance();
             Match currentMatch = currentMatchService.getMatch(MatchUuid);
-            session.save(currentMatch);
+            currentMatch.setWinnerPlayer();
+            transaction = session.beginTransaction();
+            System.out.println("----------CURRENT MATCH------------");
+            System.out.println(currentMatch.getId());
+            System.out.println(currentMatch.getPlayerOne().getId());
+            System.out.println(currentMatch.getPlayerTwo().getId());
+            System.out.println(currentMatch.getWinner().getId());
+            System.out.println("----------------------");
+            session.merge(currentMatch);
+            session.flush();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

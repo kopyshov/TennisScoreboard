@@ -9,7 +9,7 @@ import java.util.UUID;
 @Table(name = "MATCH")
 public class Match implements Serializable {
     @Id
-    @Column(name = "MATCH_ID")
+    @Column(name = "MATCH_ID", columnDefinition = "BINARY(16)")
     private UUID id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -24,16 +24,13 @@ public class Match implements Serializable {
     @Transient
     private Score score;
 
-    public Match() {
-        this.score = new Score();
+    public Match() {}
+    public Match(UUID uuid) {
+        this.id = uuid;
     }
 
     public UUID getId() {
         return id;
-    }
-
-    public void setId() {
-        id = UUID.randomUUID();
     }
 
     public Player getPlayerOne() {
@@ -60,8 +57,21 @@ public class Match implements Serializable {
         this.winner = winner;
     }
 
+    public void setWinnerPlayer() {
+        int winPointsPlayerOne = this.getScore().games[0][0] + this.getScore().games[1][0];
+        int winPointsPlayerTwo = this.getScore().games[0][1] + this.getScore().games[1][1];
+        if(winPointsPlayerOne > winPointsPlayerTwo) {
+            setWinner(getPlayerOne());
+        } else {
+            setWinner(getPlayerTwo());
+        }
+    }
+
     public Score getScore() {
         return score;
+    }
+    public void setScore(Score score) {
+        this.score = score;
     }
 }
 

@@ -25,7 +25,6 @@ public class MainServlet extends HttpServlet {
         mainController.addServices("/", new StartPageService());
         mainController.addServices("/new-match", CurrentMatchService.getInstance());
         mainController.addServices("/match-score", new MatchScoreCalculationService());
-        //mainController.addServices("/finish-match", new FinishedMatchesPersistenceService());
         mainController.addServices("/matches", new FinishedMatchesPersistenceService());
     }
 

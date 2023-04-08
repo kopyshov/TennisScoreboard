@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Текущий матч</title>
-    <link href="https://allfont.ru/allfont.css?fonts=a_lcdnova" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <%--<link href="https://allfont.ru/allfont.css?fonts=a_lcdnova" rel="stylesheet" type="text/css" />--%>
+    <%--<link rel="stylesheet" type="text/css" href="main.css">--%>
 </head>
 <body>
 <div>

@@ -1,9 +1,6 @@
 package com.kharizma.tennisscoreboard.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -12,7 +9,7 @@ import java.util.UUID;
 @Table(name = "PLAYER")
 public class Player implements Serializable {
     @Id
-    @Column(name = "PLAYER_ID")
+    @Column(name = "PLAYER_ID", columnDefinition = "BINARY(16)")
     private UUID id;
 
     @Column(name = "NAME")

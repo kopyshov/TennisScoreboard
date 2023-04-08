@@ -9,13 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Fix score counting">
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add tie-break to score counting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/MatchScoreCalculationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/MatchScoreCalculationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/gameover.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/gameover.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/match.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/match.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +45,9 @@
       </map>
     </option>
     <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../../../../Java/17/lib/src.zip!/java.base/java/util/Map.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -234,7 +241,7 @@
       <workItem from="1680597471529" duration="38988000" />
       <workItem from="1680755506767" duration="787000" />
       <workItem from="1680804193582" duration="5677000" />
-      <workItem from="1680897411209" duration="2381000" />
+      <workItem from="1680897411209" duration="19470000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Project">
       <created>1679259765483</created>
@@ -292,7 +299,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680700779880</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add tie-break to score counting">
+      <created>1680899987826</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1680899987826</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +331,7 @@
     <MESSAGE value="Add hibernate.cfg.xml, fix BDHandler" />
     <MESSAGE value="Rewriting all classes..." />
     <MESSAGE value="Fix score counting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix score counting" />
+    <MESSAGE value="Add tie-break to score counting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add tie-break to score counting" />
   </component>
 </project>
