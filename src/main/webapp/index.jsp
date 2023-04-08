@@ -3,15 +3,18 @@
 <html>
 <head>
     <title>TennisScoreboard</title>
+    <style>
+        <%@ include file="/style.css" %>
+    </style>
 </head>
 <body>
-<h1>Таблица счета</h1>
+<h1 class="content">Таблица счета</h1>
 <br/>
-<div>
-    <button onclick="location.href='/new-match'">Добавить матч</button>
+<div class="content">
+    <button class="redirect" onclick="location.href='/new-match'">Добавить матч</button>
 </div>
-<div>
-    <button onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
+<div class="content">
+    <button class="redirect" onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
 </div>
 </body>
 </html>

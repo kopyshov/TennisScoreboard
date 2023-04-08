@@ -7,7 +7,7 @@
   </style>
 </head>
 <body>
-<div>
+<div class="content">
   <table>
     <tr>
       <td colspan="4">ID матча: ${GameUuid} </td>
@@ -20,18 +20,18 @@
     </tr>
     <tr>
       <td class="tablo">${playerOneName}</td>
-      <td class="tablo>${playerOneSetOne}</td>
-      <td class="tablo>${playerOneSetTwo}</td>
+      <td class="tablo">${playerOneSetOne}</td>
+      <td class="tablo">${playerOneSetTwo}</td>
     </tr>
     <tr>
-      <td class="tablo>${playerTwoName}</td>
-      <td class="tablo>${playerTwoSetOne}</td>
-      <td class="tablo>${playerTwoSetTwo}</td>
+      <td class="tablo">${playerTwoName}</td>
+      <td class="tablo">${playerTwoSetOne}</td>
+      <td class="tablo">${playerTwoSetTwo}</td>
     </tr>
     <tr>
-      <td class="saveBtn">
+      <td>
         <form method="post" action="${pageContext.request.contextPath}/matches?match-uuid=${GameUuid}">
-          <button>Сохранить результат</button>
+          <button class="upBtn">Сохранить результат</button>
         </form>
       </td>
     </tr>

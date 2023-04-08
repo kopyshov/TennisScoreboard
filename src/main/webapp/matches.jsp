@@ -6,17 +6,20 @@
 <html>
 <head>
     <title>Матчи</title>
+  <style>
+    <%@ include file="/style.css" %>
+  </style>
 </head>
 <body>
 <c:set var="player_name" value="${player_name}"/>
-<div>
+<div class="content">
   <form method="get" name="filter">
     <input type="hidden" name="page" value="1">
     <input type="text" placeholder="имя игрока" name="filter_by_player_name">
     <button type="submit">Найти</button>
   </form>
 </div>
-<div>
+<div class="content">
   <table>
     <tr>
       <th>First Player</th>
@@ -25,22 +28,25 @@
     </tr>
     <c:forEach var="match" items="${matches}">
       <tr>
-        <td><c:out value = "${match.getPlayerOne().getName()}"/></td>
-        <td><c:out value = "${match.getPlayerTwo().getName()}"/></td>
-        <td><c:out value = "${match.getWinner().getName()}"/></td>
+        <td class="view"><c:out value = "${match.getPlayerOne().getName()}"/></td>
+        <td class="view"><c:out value = "${match.getPlayerTwo().getName()}"/></td>
+        <td class="view"><c:out value = "${match.getWinner().getName()}"/></td>
       </tr>
     </c:forEach>
+    <tr>
+      <td class="clean" colspan="3">
+        <c:forEach begin="1" end="${pages}" var="page">
+          <a href="${pageContext.request.contextPath}/matches?page=${page}&filter_by_player_name=${player_name}">${page}</a>
+        </c:forEach></td>
+    </tr>
   </table>
   <br>
-    <c:forEach begin="1" end="${pages}" var="page">
-      <a href="${pageContext.request.contextPath}/matches?page=${page}&filter_by_player_name=${player_name}">${page}</a>
-    </c:forEach>
 </div>
-<div>
-  <button onclick="location.href='/new-match'">Добавить матч</button>
+<div class="content">
+  <button class="redirect" onclick="location.href='/new-match'">Добавить матч</button>
 </div>
-<div>
-  <button onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
+<div class="content">
+  <button class="redirect" onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
 </div>
 </body>
 </html>

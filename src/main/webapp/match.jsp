@@ -8,7 +8,7 @@
     </style>
 </head>
 <body>
-<div>
+<div class="content">
     <table>
         <tr>
             <td colspan="4">ID матча: ${GameUuid} </td>
@@ -27,7 +27,7 @@
             <td class="tablo">${playerOneSetTwo}</td>
             <td class="btn">
                 <form method="post">
-                    <button name="playerId" value="${playerOneId}">UP</button>
+                    <button class="upBtn" name="playerId" value="${playerOneId}">UP</button>
                 </form>
             </td>
         </tr>
@@ -38,7 +38,7 @@
             <td class="tablo">${playerTwoSetTwo}</td>
             <td class="btn">
                 <form method="post">
-                    <button name="playerId" value="${playerTwoId}">UP</button>
+                    <button class="upBtn" name="playerId" value="${playerTwoId}">UP</button>
                 </form>
             </td>
         </tr>

@@ -2,10 +2,13 @@
 <html>
 <head>
     <title>Добавление матча</title>
+    <style>
+        <%@ include file="/style.css" %>
+    </style>
 </head>
 <body>
-<h1><%= "Add new match" %></h1>
-<div>
+<h1 class="content"><%= "Add new match" %></h1>
+<div class="content">
     <form method="post">
         <label>Имя Игрока 1:
             <input type="text" name="name1"><br />
@@ -13,12 +16,12 @@
         <label>Имя Игрока 2:
             <input type="text" name="name2"><br />
         </label>
-
-        <button type="submit">Начать</button>
+        <button class="redirect" onclick="location.href='/'">Назад</button>
+        <button class="redirect" type="submit">Начать</button>
     </form>
 </div>
-<div>
-    <button onclick="location.href='/'">Назад</button>
+<div class="content">
+
 </div>
 </body>
 </html>

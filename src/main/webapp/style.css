@@ -1,4 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+ .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+     font-family: "Arial Black", sans-serif;
+     font-size: 32px;
+}
+
+.redirect {
+    margin: 5px;
+    width: 200px;
+    height: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+}
 
 .tablo {
     font-family: 'VT323', monospace;
@@ -9,6 +26,19 @@
 .btn {
     width: 150px;
 }
+
+.view {
+    width: 250px;
+    font-family: 'VT323', monospace;
+    font-weight: bold;
+    font-size: 20px;
+    border: 1px solid black;
+}
+
+.clean {
+    background-color: white;
+}
+
 td {
     height: 50px;
     background-color: black;
@@ -19,7 +49,7 @@ td {
     position: relative;
 }
 
-button {
+.upBtn {
     position: absolute;
     top: 0;
     left: 0;
