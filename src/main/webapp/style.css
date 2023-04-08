@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.tablo {
+    font-family: 'VT323', monospace;
+    font-size: 36px;
+    border: 1px solid black;
+}
+
+.btn {
+    width: 150px;
+}
+td {
+    height: 50px;
+    background-color: black;
+    color: red;
+    border: 1px solid #ccc;
+    vertical-align: center;
+    text-align: center;
+    position: relative;
+}
+
+button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <html>
 <head>
     <title>Текущий матч</title>
-    <%--<link href="https://allfont.ru/allfont.css?fonts=a_lcdnova" rel="stylesheet" type="text/css" />--%>
-    <%--<link rel="stylesheet" type="text/css" href="main.css">--%>
+    <style>
+        <%@ include file="/style.css" %>
+    </style>
 </head>
 <body>
 <div>
@@ -19,24 +21,24 @@
             <th></th>
         </tr>
         <tr>
-            <td>${playerOneName}</td>
-            <td>${playerOnePoints}</td>
-            <td>${playerOneSetOne}</td>
-            <td>${playerOneSetTwo}</td>
-            <td>
+            <td class="tablo">${playerOneName}</td>
+            <td class="tablo">${playerOnePoints}</td>
+            <td class="tablo">${playerOneSetOne}</td>
+            <td class="tablo">${playerOneSetTwo}</td>
+            <td class="btn">
                 <form method="post">
-                    <button name="playerId" value="${playerOneId}">Добавить очко</button>
+                    <button name="playerId" value="${playerOneId}">UP</button>
                 </form>
             </td>
         </tr>
         <tr>
-            <td>${playerTwoName}</td>
-            <td>${playerTwoPoints}</td>
-            <td>${playerTwoSetOne}</td>
-            <td>${playerTwoSetTwo}</td>
-            <td>
+            <td class="tablo">${playerTwoName}</td>
+            <td class="tablo">${playerTwoPoints}</td>
+            <td class="tablo">${playerTwoSetOne}</td>
+            <td class="tablo">${playerTwoSetTwo}</td>
+            <td class="btn">
                 <form method="post">
-                    <button name="playerId" value="${playerTwoId}">Добавить очко</button>
+                    <button name="playerId" value="${playerTwoId}">UP</button>
                 </form>
             </td>
         </tr>

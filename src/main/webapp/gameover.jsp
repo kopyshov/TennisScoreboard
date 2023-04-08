@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Текущий матч</title>
+  <style>
+    <%@ include file="/style.css" %>
+  </style>
 </head>
 <body>
 <div>
@@ -16,17 +19,17 @@
       <th></th>
     </tr>
     <tr>
-      <td>${playerOneName}</td>
-      <td>${playerOneSetOne}</td>
-      <td>${playerOneSetTwo}</td>
+      <td class="tablo">${playerOneName}</td>
+      <td class="tablo>${playerOneSetOne}</td>
+      <td class="tablo>${playerOneSetTwo}</td>
     </tr>
     <tr>
-      <td>${playerTwoName}</td>
-      <td>${playerTwoSetOne}</td>
-      <td>${playerTwoSetTwo}</td>
+      <td class="tablo>${playerTwoName}</td>
+      <td class="tablo>${playerTwoSetOne}</td>
+      <td class="tablo>${playerTwoSetTwo}</td>
     </tr>
     <tr>
-      <td>
+      <td class="saveBtn">
         <form method="post" action="${pageContext.request.contextPath}/matches?match-uuid=${GameUuid}">
           <button>Сохранить результат</button>
         </form>

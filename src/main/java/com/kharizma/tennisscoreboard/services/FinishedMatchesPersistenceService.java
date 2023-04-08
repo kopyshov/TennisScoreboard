@@ -82,12 +82,6 @@ public class FinishedMatchesPersistenceService implements IService{
             Match currentMatch = currentMatchService.getMatch(MatchUuid);
             currentMatch.setWinnerPlayer();
             transaction = session.beginTransaction();
-            System.out.println("----------CURRENT MATCH------------");
-            System.out.println(currentMatch.getId());
-            System.out.println(currentMatch.getPlayerOne().getId());
-            System.out.println(currentMatch.getPlayerTwo().getId());
-            System.out.println(currentMatch.getWinner().getId());
-            System.out.println("----------------------");
             session.merge(currentMatch);
             session.flush();
             transaction.commit();

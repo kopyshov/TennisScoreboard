@@ -62,7 +62,6 @@ public class CurrentMatchService implements IService {
         currentMatch.setPlayerOne(player1);
         currentMatch.setPlayerTwo(player2);
         currentMatch.setScore(new Score());
-        System.out.println("!!!!!!!!!!!!!!CURRENT MATCH ID = " + currentMatch.getId());
 
         matches.put(currentMatch.getId(), currentMatch);
 

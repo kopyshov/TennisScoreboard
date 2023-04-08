@@ -9,17 +9,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add tie-break to score counting">
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Fix saving entities">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/models/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/gameover.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/gameover.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/match.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/match.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/matches.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/matches.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +239,7 @@
       <workItem from="1680597471529" duration="38988000" />
       <workItem from="1680755506767" duration="787000" />
       <workItem from="1680804193582" duration="5677000" />
-      <workItem from="1680897411209" duration="19470000" />
+      <workItem from="1680897411209" duration="28151000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Project">
       <created>1679259765483</created>
@@ -306,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680899987826</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Fix saving entities">
+      <created>1680957160898</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1680957160898</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,6 +337,7 @@
     <MESSAGE value="Rewriting all classes..." />
     <MESSAGE value="Fix score counting" />
     <MESSAGE value="Add tie-break to score counting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add tie-break to score counting" />
+    <MESSAGE value="Fix saving entities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix saving entities" />
   </component>
 </project>

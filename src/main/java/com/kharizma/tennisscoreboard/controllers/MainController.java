@@ -18,6 +18,9 @@ public class MainController {
             HttpServletResponse servletResponse) throws ServletException, IOException {
         String servletPath = servletRequest.getServletPath();
         service = services.get(servletPath);
+        System.out.println("-------PATH--------");
+        System.out.println(servletPath);
+        System.out.println("-------------------");
         service.executeGet(servletRequest, servletResponse);
     }
 
