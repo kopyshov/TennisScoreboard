@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.services;
+package com.kharizma.tennisscoreboard.controllers;
 
 import com.kharizma.tennisscoreboard.models.Match;
 import jakarta.servlet.RequestDispatcher;

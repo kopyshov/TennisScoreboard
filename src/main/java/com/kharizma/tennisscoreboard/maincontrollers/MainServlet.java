@@ -1,12 +1,12 @@
-package com.kharizma.tennisscoreboard.controllers;
+package com.kharizma.tennisscoreboard.maincontrollers;
 
 import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
 import com.kharizma.tennisscoreboard.models.Match;
 import com.kharizma.tennisscoreboard.models.Player;
-import com.kharizma.tennisscoreboard.services.CurrentMatchController;
-import com.kharizma.tennisscoreboard.services.FinishedMatchesPersistenceController;
-import com.kharizma.tennisscoreboard.services.MatchScoreController;
-import com.kharizma.tennisscoreboard.services.StartPageController;
+import com.kharizma.tennisscoreboard.controllers.CurrentMatchController;
+import com.kharizma.tennisscoreboard.controllers.FinishedMatchesPersistenceController;
+import com.kharizma.tennisscoreboard.controllers.MatchScoreController;
+import com.kharizma.tennisscoreboard.controllers.StartPageController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

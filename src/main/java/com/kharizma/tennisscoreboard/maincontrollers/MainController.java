@@ -1,6 +1,6 @@
-package com.kharizma.tennisscoreboard.controllers;
+package com.kharizma.tennisscoreboard.maincontrollers;
 
-import com.kharizma.tennisscoreboard.services.IController;
+import com.kharizma.tennisscoreboard.controllers.IController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
