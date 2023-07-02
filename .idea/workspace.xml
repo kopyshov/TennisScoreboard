@@ -12,7 +12,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add DAO-pattern" />
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Rename directories">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MatchScoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MatchScoreController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -247,7 +250,7 @@
       <workItem from="1686564582991" duration="111000" />
       <workItem from="1687019631616" duration="1028000" />
       <workItem from="1688240292293" duration="170000" />
-      <workItem from="1688298738851" duration="16170000" />
+      <workItem from="1688298738851" duration="17769000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Project">
       <created>1679259765483</created>
@@ -361,7 +364,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688325684423</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Rename classes">
+      <created>1688326306342</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1688326306342</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Rename directories">
+      <created>1688326437341</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1688326437341</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +410,9 @@
     <MESSAGE value="Fix isAdvantage" />
     <MESSAGE value="Fix warnings" />
     <MESSAGE value="Add DAO-pattern" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add DAO-pattern" />
+    <MESSAGE value="Rename classes" />
+    <MESSAGE value="Rename directories" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename directories" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
