@@ -1,6 +1,5 @@
-package com.kharizma.tennisscoreboard.controllers.servlets;
+package com.kharizma.tennisscoreboard.controllers;
 
-import com.kharizma.tennisscoreboard.controllers.MainController;
 import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
 import com.kharizma.tennisscoreboard.models.Match;
 import com.kharizma.tennisscoreboard.models.Player;
@@ -33,6 +32,7 @@ public class MainServlet extends HttpServlet {
         mainController.addServices("/match-score", new MatchScoreCalculationService());
         mainController.addServices("/matches", new FinishedMatchesPersistenceService());
 
+        //Добавляет тестовые матчи
         addSomeMatches();
     }
 
