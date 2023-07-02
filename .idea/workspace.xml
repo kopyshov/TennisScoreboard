@@ -12,15 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Fix warnings">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dao/MatchDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dao/PlayerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/servlets/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/controllers/MainServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/CurrentMatchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/services/FinishedMatchesPersistenceService.java" afterDir="false" />
-    </list>
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add DAO-pattern" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -255,7 +247,7 @@
       <workItem from="1686564582991" duration="111000" />
       <workItem from="1687019631616" duration="1028000" />
       <workItem from="1688240292293" duration="170000" />
-      <workItem from="1688298738851" duration="15754000" />
+      <workItem from="1688298738851" duration="16170000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize Project">
       <created>1679259765483</created>
@@ -362,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680975352420</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Add DAO-pattern">
+      <created>1688325684422</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1688325684423</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +392,8 @@
     <MESSAGE value="Add some matches" />
     <MESSAGE value="Fix isAdvantage" />
     <MESSAGE value="Fix warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix warnings" />
+    <MESSAGE value="Add DAO-pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add DAO-pattern" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

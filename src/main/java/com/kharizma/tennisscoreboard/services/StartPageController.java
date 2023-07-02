@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class StartPageService implements IService {
+public class StartPageController implements IController {
     @Override
     public void executeGet(
             HttpServletRequest servletRequest,

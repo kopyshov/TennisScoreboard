@@ -12,19 +12,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CurrentMatchService implements IService {
+public class CurrentMatchController implements IController {
 
     private final MatchDao matchDao;
-    public static CurrentMatchService instance;
+    public static CurrentMatchController instance;
     private final Map<UUID, Match> matches = new HashMap<>();
 
-    private CurrentMatchService() {
+    private CurrentMatchController() {
         matchDao = new MatchDao();
     }
 
-    public static CurrentMatchService getInstance() {
+    public static CurrentMatchController getInstance() {
         if(instance == null) {
-            instance = new CurrentMatchService();
+            instance = new CurrentMatchController();
         }
         return instance;
     }

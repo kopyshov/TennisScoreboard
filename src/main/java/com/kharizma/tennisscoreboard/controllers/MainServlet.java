@@ -3,10 +3,10 @@ package com.kharizma.tennisscoreboard.controllers;
 import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
 import com.kharizma.tennisscoreboard.models.Match;
 import com.kharizma.tennisscoreboard.models.Player;
-import com.kharizma.tennisscoreboard.services.CurrentMatchService;
-import com.kharizma.tennisscoreboard.services.FinishedMatchesPersistenceService;
-import com.kharizma.tennisscoreboard.services.MatchScoreCalculationService;
-import com.kharizma.tennisscoreboard.services.StartPageService;
+import com.kharizma.tennisscoreboard.services.CurrentMatchController;
+import com.kharizma.tennisscoreboard.services.FinishedMatchesPersistenceController;
+import com.kharizma.tennisscoreboard.services.MatchScoreController;
+import com.kharizma.tennisscoreboard.services.StartPageController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,10 +27,10 @@ public class MainServlet extends HttpServlet {
     public void init() {
         //сначала я делал if-else, но мне не понравилось. Выглядело не очень
         //Есть подозрение что это можно улучшить
-        mainController.addServices("/", new StartPageService());
-        mainController.addServices("/new-match", CurrentMatchService.getInstance());
-        mainController.addServices("/match-score", new MatchScoreCalculationService());
-        mainController.addServices("/matches", new FinishedMatchesPersistenceService());
+        mainController.addServices("/", new StartPageController());
+        mainController.addServices("/new-match", CurrentMatchController.getInstance());
+        mainController.addServices("/match-score", new MatchScoreController());
+        mainController.addServices("/matches", new FinishedMatchesPersistenceController());
 
         //Добавляет тестовые матчи
         addSomeMatches();

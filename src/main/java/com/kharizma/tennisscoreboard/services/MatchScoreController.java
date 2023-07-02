@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 
-public class MatchScoreCalculationService implements IService{
+public class MatchScoreController implements IController {
 
     private Match currentMatch;
 
@@ -50,8 +50,8 @@ public class MatchScoreCalculationService implements IService{
     }
 
     private void setAttributes(HttpServletRequest servletRequest) {
-        CurrentMatchService currentMatchService = CurrentMatchService.getInstance();
-        Map<UUID, Match> matches = currentMatchService.getMatches();
+        CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
+        Map<UUID, Match> matches = currentMatchController.getMatches();
         UUID currentMatchId = UUID.fromString(servletRequest.getParameter("uuid"));
         currentMatch = matches.get(currentMatchId);
         servletRequest.setAttribute("GameUuid", currentMatchId);

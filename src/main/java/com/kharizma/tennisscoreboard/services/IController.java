@@ -6,7 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public interface IService {
+public interface IController {
 
     void executeGet(
             HttpServletRequest servletRequest,

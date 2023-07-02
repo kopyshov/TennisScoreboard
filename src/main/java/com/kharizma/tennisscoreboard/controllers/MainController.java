@@ -1,6 +1,6 @@
 package com.kharizma.tennisscoreboard.controllers;
 
-import com.kharizma.tennisscoreboard.services.IService;
+import com.kharizma.tennisscoreboard.services.IController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainController {
-    IService service;
-    private final Map<String, IService> services = new HashMap<>();
+    IController service;
+    private final Map<String, IController> services = new HashMap<>();
 
     public void handleGetRequest(
             HttpServletRequest servletRequest,
@@ -28,7 +28,7 @@ public class MainController {
         service.executePost(servletRequest, servletResponse);
     }
 
-    public void addServices(String key, IService service) {
+    public void addServices(String key, IController service) {
         services.put(key, service);
     }
 }

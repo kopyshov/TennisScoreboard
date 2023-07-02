@@ -15,7 +15,7 @@ public class MatchDao {
     Match currentMatch;
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
-    private static final String ALL_MATCHES = "from Match";
+    private static final String ALL_MATCHES = "FROM Match";
 
     public MatchDao() {
         playerDao = new PlayerDao();

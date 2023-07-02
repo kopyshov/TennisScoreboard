@@ -11,11 +11,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-public class FinishedMatchesPersistenceService implements IService{
+public class FinishedMatchesPersistenceController implements IController {
     private static final int ONE_PAGE_LIMIT = 3;
     private final MatchDao matchDao;
 
-    public FinishedMatchesPersistenceService() {
+    public FinishedMatchesPersistenceController() {
         matchDao = new MatchDao();
     }
 
@@ -56,8 +56,8 @@ public class FinishedMatchesPersistenceService implements IService{
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
-        CurrentMatchService currentMatchService = CurrentMatchService.getInstance();
-        Match currentMatch = currentMatchService.getMatch(MatchUuid);
+        CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
+        Match currentMatch = currentMatchController.getMatch(MatchUuid);
         currentMatch.setWinnerPlayer();
         MatchDao matchDao = new MatchDao();
         matchDao.save(currentMatch);
