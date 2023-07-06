@@ -2,6 +2,7 @@ package com.kharizma.tennisscoreboard.controllers;
 
 import com.kharizma.tennisscoreboard.dao.MatchDao;
 import com.kharizma.tennisscoreboard.models.Match;
+import com.kharizma.tennisscoreboard.models.Player;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,6 +46,15 @@ public class FinishedMatchesPersistenceController implements IController {
                 pages = matches.size() / ONE_PAGE_LIMIT;
             }
             matches = matchDao.getMatchesByNameFilterWithOffset(playerName, offset, ONE_PAGE_LIMIT);
+            if(matches.isEmpty()){
+                Match emptyMatch = new Match();
+                Player emptyPlayer = new Player();
+                emptyPlayer.setName("-");
+                emptyMatch.setPlayerOne(emptyPlayer);
+                emptyMatch.setPlayerTwo(emptyPlayer);
+                emptyMatch.setWinner(emptyPlayer);
+                matches.add(emptyMatch);
+            }
         }
         servletRequest.setAttribute("player_name", playerName);
         servletRequest.setAttribute("matches", matches);
