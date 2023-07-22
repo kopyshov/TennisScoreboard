@@ -15,6 +15,13 @@
         <property name="hibernate.use_sql_comments">true</property>
         <property name="hibernate.generate_statistics">false</property>
 
+        <property name="current_session_context_class">thread</property>
+        <property name="hibernate.connection.provider_class">org.hibernate.hikaricp.internal.HikariCPConnectionProvider</property>
+        <property name="hibernate.hikari.connectionTimeout">10000</property>
+        <property name="hibernate.hikari.minimumIdle">20</property>
+        <property name="hibernate.hikari.maximumPoolSize">300</property>
+        <property name="hibernate.hikari.idleTimeout">200000</property>
+
         <mapping class="com.kharizma.tennisscoreboard.models.Player"/>
         <mapping class="com.kharizma.tennisscoreboard.models.Match"/>
 

@@ -1,28 +1,28 @@
 package com.kharizma.tennisscoreboard.dbhandlers;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class DBHandler {
-    private static SessionFactory sessionFactory;
-    private static StandardServiceRegistry registry;
+    private static final SessionFactory sessionFactory = buildSessionFactory();
 
     private DBHandler() {
     }
 
-    public static SessionFactory getSessionFactory() {
+    private static SessionFactory buildSessionFactory() {
         try {
-        registry = new StandardServiceRegistryBuilder().configure().build();
-        MetadataSources sources = new MetadataSources(registry);
-        Metadata metadata = sources.getMetadataBuilder().build();
-        sessionFactory = metadata.getSessionFactoryBuilder().build();
+            return new Configuration().configure().buildSessionFactory();
+        } catch (Throwable ex) {
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
         }
-        catch (Exception e) {
-            StandardServiceRegistryBuilder.destroy(registry);
-        }
+    }
+
+    public static SessionFactory getSessionFactory() {
         return sessionFactory;
+    }
+
+    public static void shutdown() {
+        getSessionFactory().close();
     }
 }
