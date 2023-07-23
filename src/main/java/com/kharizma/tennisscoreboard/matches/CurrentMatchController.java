@@ -1,7 +1,6 @@
-package com.kharizma.tennisscoreboard.controllers;
+package com.kharizma.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.dao.MatchDao;
-import com.kharizma.tennisscoreboard.models.Match;
+import com.kharizma.tennisscoreboard.controllers.IController;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

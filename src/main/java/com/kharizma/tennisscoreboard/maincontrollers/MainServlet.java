@@ -1,11 +1,11 @@
 package com.kharizma.tennisscoreboard.maincontrollers;
 
-import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
-import com.kharizma.tennisscoreboard.models.Match;
-import com.kharizma.tennisscoreboard.models.Player;
-import com.kharizma.tennisscoreboard.controllers.CurrentMatchController;
-import com.kharizma.tennisscoreboard.controllers.FinishedMatchesPersistenceController;
-import com.kharizma.tennisscoreboard.controllers.MatchScoreController;
+import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import com.kharizma.tennisscoreboard.matches.Match;
+import com.kharizma.tennisscoreboard.players.Player;
+import com.kharizma.tennisscoreboard.matches.CurrentMatchController;
+import com.kharizma.tennisscoreboard.matches.FinishedMatchesPersistenceController;
+import com.kharizma.tennisscoreboard.matches.score.MatchScoreController;
 import com.kharizma.tennisscoreboard.controllers.StartPageController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -49,7 +49,7 @@ public class MainServlet extends HttpServlet {
     }
 
     public void addSomeMatches() {
-        try(Session session = DBHandler.getSessionFactory().openSession()) {
+        try(Session session = DatabaseHandler.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
             Player p1 = new Player();

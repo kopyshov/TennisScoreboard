@@ -1,12 +1,12 @@
-package com.kharizma.tennisscoreboard.dbhandlers;
+package com.kharizma.tennisscoreboard.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class DBHandler {
+public class DatabaseHandler {
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
-    private DBHandler() {
+    private DatabaseHandler() {
     }
 
     private static SessionFactory buildSessionFactory() {

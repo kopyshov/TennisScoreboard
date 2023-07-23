@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.models;
+package com.kharizma.tennisscoreboard.players;
 
 import jakarta.persistence.*;
 

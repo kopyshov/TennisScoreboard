@@ -14,7 +14,18 @@
     <button class="redirect" onclick="location.href='/new-match'">Добавить матч</button>
 </div>
 <div class="content">
-    <button class="redirect" onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
+    <%
+        String playerName = request.getParameter("playerName");
+        if (playerName != null && !playerName.isEmpty()) {
+    %>
+    <button class="redirect" onclick="location.href='/matches?page=1&filter_by_player_name=<%= playerName %>'">Показать все матчи</button>
+    <%
+    } else {
+    %>
+    <button class="redirect" onclick="location.href='/matches?page=1'">Показать все матчи</button>
+    <%
+        }
+    %>
 </div>
 </body>
 </html>

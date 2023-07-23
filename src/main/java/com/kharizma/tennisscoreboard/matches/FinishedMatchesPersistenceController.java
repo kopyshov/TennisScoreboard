@@ -1,8 +1,7 @@
-package com.kharizma.tennisscoreboard.controllers;
+package com.kharizma.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.dao.MatchDao;
-import com.kharizma.tennisscoreboard.models.Match;
-import com.kharizma.tennisscoreboard.models.Player;
+import com.kharizma.tennisscoreboard.controllers.IController;
+import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,12 +22,12 @@ public class FinishedMatchesPersistenceController implements IController {
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         int pages;
-        List matches;
+        List<Match> matches;
         String playerName;
         int page = Integer.parseInt(servletRequest.getParameter("page")) - 1;
         int offset = page * ONE_PAGE_LIMIT;
 
-        if(servletRequest.getParameter("filter_by_player_name").equals("")) {
+        if(servletRequest.getParameter("filter_by_player_name") == null) {
             playerName = "";
             matches = matchDao.getAllMatches();
             if(matches.size() % ONE_PAGE_LIMIT != 0) {
@@ -59,6 +58,7 @@ public class FinishedMatchesPersistenceController implements IController {
         servletRequest.setAttribute("player_name", playerName);
         servletRequest.setAttribute("matches", matches);
         servletRequest.setAttribute("pages", pages);
+
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/matches.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }
@@ -66,11 +66,13 @@ public class FinishedMatchesPersistenceController implements IController {
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
+        System.out.println("MATCH ID = " + MatchUuid);
         CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
         Match currentMatch = currentMatchController.getMatch(MatchUuid);
         currentMatch.setWinnerPlayer();
         MatchDao matchDao = new MatchDao();
         matchDao.save(currentMatch);
+        CurrentMatchController.getInstance().getMatches().remove(currentMatch.getId());
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }

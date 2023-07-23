@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.kharizma.tennisscoreboard.models.Match" %>
+<%@ page import="com.kharizma.tennisscoreboard.matches.Match" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -37,9 +37,22 @@
     </c:forEach>
     <tr>
       <td class="clean" colspan="3">
+        <%
+          String playerName = request.getParameter("filter_by_player_name");
+          if (playerName != null && !playerName.isEmpty()) {
+        %>
         <c:forEach begin="1" end="${pages}" var="page">
           <a href="${pageContext.request.contextPath}/matches?page=${page}&filter_by_player_name=${player_name}">${page}</a>
         </c:forEach></td>
+        <%
+        } else {
+        %>
+      <c:forEach begin="1" end="${pages}" var="page">
+        <a href="${pageContext.request.contextPath}/matches?page=${page}">${page}</a>
+      </c:forEach>
+        <%
+          }
+        %>
     </tr>
   </table>
   <br>
@@ -48,7 +61,7 @@
   <button class="redirect" onclick="location.href='/new-match'">Добавить матч</button>
 </div>
 <div class="content">
-  <button class="redirect" onclick="location.href='/matches?page=1&filter_by_player_name='">Показать все матчи</button>
+  <button class="redirect" onclick="location.href='/matches?page=1'">Показать все матчи</button>
 </div>
 </body>
 </html>

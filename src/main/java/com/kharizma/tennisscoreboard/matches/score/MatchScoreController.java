@@ -1,6 +1,8 @@
-package com.kharizma.tennisscoreboard.controllers;
+package com.kharizma.tennisscoreboard.matches.score;
 
-import com.kharizma.tennisscoreboard.models.Match;
+import com.kharizma.tennisscoreboard.controllers.IController;
+import com.kharizma.tennisscoreboard.matches.CurrentMatchController;
+import com.kharizma.tennisscoreboard.matches.Match;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -44,7 +46,7 @@ public class MatchScoreController implements IController {
             setAttributes(servletRequest);
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/gameover.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);
-            CurrentMatchController.getInstance().getMatches().remove(currentMatch.getId());
+            System.out.println("Матч ид: " + currentMatch.getId());
             return;
         }
         executeGet(servletRequest, servletResponse);

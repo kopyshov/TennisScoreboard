@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.models;
+package com.kharizma.tennisscoreboard.matches.score;
 
 public class Score {
 

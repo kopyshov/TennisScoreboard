@@ -1,9 +1,9 @@
-package com.kharizma.tennisscoreboard.dao;
+package com.kharizma.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
-import com.kharizma.tennisscoreboard.models.Match;
-import com.kharizma.tennisscoreboard.models.Player;
-import com.kharizma.tennisscoreboard.models.Score;
+import com.kharizma.tennisscoreboard.players.PlayerDao;
+import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import com.kharizma.tennisscoreboard.players.Player;
+import com.kharizma.tennisscoreboard.matches.score.Score;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -36,7 +36,7 @@ public class MatchDao {
 
     public void save(Match currentMatch) {
         Transaction transaction = null;
-        try (Session session = DBHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.merge(currentMatch);
             session.flush();
@@ -52,7 +52,7 @@ public class MatchDao {
     public List<Match> getAllMatches() {
         Transaction transaction;
         List<Match> matches = null;
-        try (Session session = DBHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Match> query = session.createQuery(ALL_MATCHES, Match.class);
             matches = query.getResultList();
@@ -66,7 +66,7 @@ public class MatchDao {
     public List<Match> getAllMatchesWithOffset(int offset, int pageLimit) {
         Transaction transaction;
         List<Match> matches = null;
-        try (Session session = DBHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Match> query = session.createQuery(ALL_MATCHES, Match.class);
             matches = query
@@ -83,7 +83,7 @@ public class MatchDao {
     public List<Match> getMatchesByNameFilter(String playerName) {
         Transaction transaction;
         List<Match> matches = null;
-        try (Session session = DBHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Match> query = session.createQuery(FILTER_BY_NAME, Match.class);
             matches = query.setParameter("playerName", playerName).getResultList();
@@ -97,7 +97,7 @@ public class MatchDao {
     public List<Match> getMatchesByNameFilterWithOffset(String playerName, int offset, int pageLimit) {
         Transaction transaction;
         List<Match> matches = null;
-        try (Session session = DBHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Match> query = session.createQuery(FILTER_BY_NAME, Match.class);
             matches = query

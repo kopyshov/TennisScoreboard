@@ -1,7 +1,6 @@
-package com.kharizma.tennisscoreboard.dao;
+package com.kharizma.tennisscoreboard.players;
 
-import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
-import com.kharizma.tennisscoreboard.models.Player;
+import com.kharizma.tennisscoreboard.util.DatabaseHandler;
 import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,7 +12,7 @@ public class PlayerDao {
     public Player insertPlayer(String name) {
         Transaction transaction = null;
         Player player = null;
-        try (Session session = DBHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Player> query = session.createQuery(FIND_BY_NAME, Player.class);
             query.setParameter("name", name);
