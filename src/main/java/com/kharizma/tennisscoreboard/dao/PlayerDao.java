@@ -3,9 +3,9 @@ package com.kharizma.tennisscoreboard.dao;
 import com.kharizma.tennisscoreboard.dbhandlers.DBHandler;
 import com.kharizma.tennisscoreboard.models.Player;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class PlayerDao {
     private static final String FIND_BY_NAME = "FROM Player WHERE name = :name ";
@@ -15,10 +15,10 @@ public class PlayerDao {
         Player player = null;
         try (Session session = DBHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query query = session.createQuery(FIND_BY_NAME);
+            Query<Player> query = session.createQuery(FIND_BY_NAME, Player.class);
             query.setParameter("name", name);
             try {
-                player = (Player) query.getSingleResult();
+                player = query.getSingleResult();
             } catch (NoResultException nre) {
                 player = new Player();
                 player.generateId();

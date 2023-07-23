@@ -6,6 +6,7 @@ import com.kharizma.tennisscoreboard.models.Player;
 import com.kharizma.tennisscoreboard.models.Score;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,12 +49,13 @@ public class MatchDao {
         }
     }
 
-    public List getAllMatches() {
+    public List<Match> getAllMatches() {
         Transaction transaction;
-        List matches = null;
+        List<Match> matches = null;
         try (Session session = DBHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            matches = session.createQuery(ALL_MATCHES).list();
+            Query<Match> query = session.createQuery(ALL_MATCHES, Match.class);
+            matches = query.getResultList();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,15 +63,16 @@ public class MatchDao {
         return matches;
     }
 
-    public List getAllMatchesWithOffset(int offset, int pageLimit) {
+    public List<Match> getAllMatchesWithOffset(int offset, int pageLimit) {
         Transaction transaction;
-        List matches = null;
+        List<Match> matches = null;
         try (Session session = DBHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            matches = session.createQuery(ALL_MATCHES)
+            Query<Match> query = session.createQuery(ALL_MATCHES, Match.class);
+            matches = query
                     .setFirstResult(offset)
                     .setMaxResults(pageLimit)
-                    .list();
+                    .getResultList();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,12 +80,13 @@ public class MatchDao {
         return matches;
     }
 
-    public List getMatchesByNameFilter(String playerName) {
+    public List<Match> getMatchesByNameFilter(String playerName) {
         Transaction transaction;
-        List matches = null;
+        List<Match> matches = null;
         try (Session session = DBHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            matches = session.createQuery(FILTER_BY_NAME).setParameter("playerName", playerName).list();
+            Query<Match> query = session.createQuery(FILTER_BY_NAME, Match.class);
+            matches = query.setParameter("playerName", playerName).getResultList();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,12 +94,13 @@ public class MatchDao {
         return matches;
     }
 
-    public List getMatchesByNameFilterWithOffset(String playerName, int offset, int pageLimit) {
+    public List<Match> getMatchesByNameFilterWithOffset(String playerName, int offset, int pageLimit) {
         Transaction transaction;
-        List matches = null;
+        List<Match> matches = null;
         try (Session session = DBHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            matches = session.createQuery(FILTER_BY_NAME)
+            Query<Match> query = session.createQuery(FILTER_BY_NAME, Match.class);
+            matches = query
                     .setParameter("playerName", playerName)
                     .setFirstResult(offset)
                     .setMaxResults(pageLimit)

@@ -12,11 +12,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Fix problem with CurrentMatches">
+    <list default="true" id="f8b286e7-00f7-45e8-a44d-f51bcbfe7a19" name="Changes" comment="Add HikariCP">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dbhandlers/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dbhandlers/DBHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dao/MatchDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kharizma/tennisscoreboard/dao/MatchDao.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
