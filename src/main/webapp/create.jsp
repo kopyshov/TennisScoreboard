@@ -16,7 +16,7 @@
         <label>Имя Игрока 2:
             <input type="text" name="name2"><br />
         </label>
-        <button class="redirect" onclick="location.href='/'">Назад</button>
+        <%--<button class="redirect" onclick="location.href='/'">Назад</button>--%>
         <button class="redirect" type="submit">Начать</button>
     </form>
 </div>

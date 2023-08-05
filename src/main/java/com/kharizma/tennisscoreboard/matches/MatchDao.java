@@ -16,6 +16,9 @@ public class MatchDao {
     Match currentMatch;
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
+    private static final String COUNT_FILTER_BY_NAME = "SELECT COUNT(*) FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
+
+    private static final String COUNT_MATCHES = "SELECT COUNT(*) FROM Match";
     private static final String ALL_MATCHES = "FROM Match";
 
     public MatchDao() {
@@ -49,18 +52,18 @@ public class MatchDao {
         }
     }
 
-    public List<Match> getAllMatches() {
+    public Long getCountMatches() {
         Transaction transaction;
-        List<Match> matches = null;
+        Long countMatches = 0L;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query<Match> query = session.createQuery(ALL_MATCHES, Match.class);
-            matches = query.getResultList();
+            Query<Long> query = session.createQuery(COUNT_MATCHES, Long.class);
+            countMatches = query.uniqueResult();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return matches;
+        return countMatches;
     }
 
     public List<Match> getAllMatchesWithOffset(int offset, int pageLimit) {
@@ -80,18 +83,18 @@ public class MatchDao {
         return matches;
     }
 
-    public List<Match> getMatchesByNameFilter(String playerName) {
+    public Long getCountMatchesByNameFilter(String playerName) {
         Transaction transaction;
-        List<Match> matches = null;
+        Long countMatches = 0L;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query<Match> query = session.createQuery(FILTER_BY_NAME, Match.class);
-            matches = query.setParameter("playerName", playerName).getResultList();
+            Query<Long> query = session.createQuery(COUNT_FILTER_BY_NAME, Long.class);
+            countMatches = query.setParameter("playerName", playerName).uniqueResult();
             transaction.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return matches;
+        return countMatches;
     }
 
     public List<Match> getMatchesByNameFilterWithOffset(String playerName, int offset, int pageLimit) {

@@ -46,7 +46,6 @@ public class MatchScoreController implements IController {
             setAttributes(servletRequest);
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/gameover.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);
-            System.out.println("Матч ид: " + currentMatch.getId());
             return;
         }
         executeGet(servletRequest, servletResponse);

@@ -21,28 +21,29 @@ public class FinishedMatchesPersistenceController implements IController {
 
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-        int pages;
+        long pages;
         List<Match> matches;
+        Long countMatches;
         String playerName;
         int page = Integer.parseInt(servletRequest.getParameter("page")) - 1;
         int offset = page * ONE_PAGE_LIMIT;
 
         if(servletRequest.getParameter("filter_by_player_name") == null) {
             playerName = "";
-            matches = matchDao.getAllMatches();
-            if(matches.size() % ONE_PAGE_LIMIT != 0) {
-                pages = matches.size() / ONE_PAGE_LIMIT + 1;
+            countMatches = matchDao.getCountMatches();
+            if(countMatches % ONE_PAGE_LIMIT != 0) {
+                pages = countMatches / ONE_PAGE_LIMIT + 1;
             } else {
-                pages = matches.size() / ONE_PAGE_LIMIT;
+                pages = countMatches / ONE_PAGE_LIMIT;
             }
             matches = matchDao.getAllMatchesWithOffset(offset, ONE_PAGE_LIMIT);
         } else {
             playerName = servletRequest.getParameter("filter_by_player_name");
-            matches = matchDao.getMatchesByNameFilter(playerName);
-            if(matches.size() % ONE_PAGE_LIMIT != 0) {
-                pages = matches.size() / ONE_PAGE_LIMIT + 1;
+            countMatches = matchDao.getCountMatchesByNameFilter(playerName);
+            if(countMatches % ONE_PAGE_LIMIT != 0) {
+                pages = countMatches / ONE_PAGE_LIMIT + 1;
             } else {
-                pages = matches.size() / ONE_PAGE_LIMIT;
+                pages = countMatches / ONE_PAGE_LIMIT;
             }
             matches = matchDao.getMatchesByNameFilterWithOffset(playerName, offset, ONE_PAGE_LIMIT);
             if(matches.isEmpty()){
