@@ -1,7 +1,9 @@
 package com.kharizma.tennisscoreboard.matches;
 
+import com.kharizma.tennisscoreboard.matches.score.GameState;
+import com.kharizma.tennisscoreboard.matches.score.MatchScore;
+import com.kharizma.tennisscoreboard.matches.score.old.OldScore;
 import com.kharizma.tennisscoreboard.players.Player;
-import com.kharizma.tennisscoreboard.matches.score.Score;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -24,7 +26,10 @@ public class Match implements Serializable {
     private Player winner;
 
     @Transient
-    private Score score;
+    private OldScore oldScore;
+
+    @Transient
+    private MatchScore matchScore;
 
     public Match() {}
     public Match(UUID uuid) {
@@ -59,7 +64,7 @@ public class Match implements Serializable {
         this.winner = winner;
     }
 
-    public void setWinnerPlayer() {
+/*    public void setWinnerPlayer() {
         int winPointsPlayerOne = this.getScore().games[0][0] + this.getScore().games[1][0];
         int winPointsPlayerTwo = this.getScore().games[0][1] + this.getScore().games[1][1];
         if(winPointsPlayerOne > winPointsPlayerTwo) {
@@ -67,13 +72,29 @@ public class Match implements Serializable {
         } else {
             setWinner(getPlayerTwo());
         }
+    }*/
+public void setWinnerPlayer(GameState state) {
+    if (state == GameState.PLAYER_ONE_WIN) {
+        setWinner(getPlayerOne());
+    } else {
+        setWinner(getPlayerTwo());
+    }
+}
+
+
+    public OldScore getScore() {
+        return oldScore;
+    }
+    public void setScore(OldScore oldScore) {
+        this.oldScore = oldScore;
     }
 
-    public Score getScore() {
-        return score;
+    public MatchScore getMatchScore() {
+        return matchScore;
     }
-    public void setScore(Score score) {
-        this.score = score;
+
+    public void setMatchScore(MatchScore matchScore) {
+        this.matchScore = matchScore;
     }
 }
 

@@ -1,9 +1,9 @@
 package com.kharizma.tennisscoreboard.matches;
 
+import com.kharizma.tennisscoreboard.matches.score.MatchScore;
+import com.kharizma.tennisscoreboard.players.Player;
 import com.kharizma.tennisscoreboard.players.PlayerDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
-import com.kharizma.tennisscoreboard.players.Player;
-import com.kharizma.tennisscoreboard.matches.score.Score;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -32,7 +32,8 @@ public class MatchDao {
         currentMatch = new Match(UUID.randomUUID());
         currentMatch.setPlayerOne(player1);
         currentMatch.setPlayerTwo(player2);
-        currentMatch.setScore(new Score());
+        currentMatch.setMatchScore(new MatchScore());
+        //currentMatch.setScore(new OldScore());
 
         return currentMatch;
     }

@@ -1,12 +1,12 @@
 package com.kharizma.tennisscoreboard.maincontrollers;
 
-import com.kharizma.tennisscoreboard.util.DatabaseHandler;
-import com.kharizma.tennisscoreboard.matches.Match;
-import com.kharizma.tennisscoreboard.players.Player;
+import com.kharizma.tennisscoreboard.controllers.StartPageController;
 import com.kharizma.tennisscoreboard.matches.CurrentMatchController;
 import com.kharizma.tennisscoreboard.matches.FinishedMatchesPersistenceController;
-import com.kharizma.tennisscoreboard.matches.score.MatchScoreController;
-import com.kharizma.tennisscoreboard.controllers.StartPageController;
+import com.kharizma.tennisscoreboard.matches.Match;
+import com.kharizma.tennisscoreboard.matches.score.ScoreController;
+import com.kharizma.tennisscoreboard.players.Player;
+import com.kharizma.tennisscoreboard.util.DatabaseHandler;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -29,7 +29,7 @@ public class MainServlet extends HttpServlet {
         //Есть подозрение что это можно улучшить
         mainController.addServices("/", new StartPageController());
         mainController.addServices("/new-match", CurrentMatchController.getInstance());
-        mainController.addServices("/match-score", new MatchScoreController());
+        mainController.addServices("/match-score", new ScoreController());
         mainController.addServices("/matches", new FinishedMatchesPersistenceController());
 
         //Добавляет тестовые матчи

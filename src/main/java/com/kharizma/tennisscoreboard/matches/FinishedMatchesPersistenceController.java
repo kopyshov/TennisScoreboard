@@ -67,10 +67,8 @@ public class FinishedMatchesPersistenceController implements IController {
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
-        System.out.println("MATCH ID = " + MatchUuid);
         CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
         Match currentMatch = currentMatchController.getMatch(MatchUuid);
-        currentMatch.setWinnerPlayer();
         MatchDao matchDao = new MatchDao();
         matchDao.save(currentMatch);
         CurrentMatchController.getInstance().getMatches().remove(currentMatch.getId());

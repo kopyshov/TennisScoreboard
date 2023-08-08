@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.matches.score;
+package com.kharizma.tennisscoreboard.matches.score.old;
 
 import com.kharizma.tennisscoreboard.controllers.IController;
 import com.kharizma.tennisscoreboard.matches.CurrentMatchController;
