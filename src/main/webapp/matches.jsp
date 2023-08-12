@@ -30,16 +30,32 @@
     <c:forEach var="match" items="${matches}">
       <tr>
         <c:set  var="winner" value="${match.getWinner().getId()}"/>
-        <td class="view"><c:out value = "${match.getPlayerOne().getName()}"/>
         <c:choose>
           <c:when test="${match.getPlayerOne().getId().equals(winner)}">
-        <img src="./images/medal.png" height="20" width="20" alt=" (WIN)"/> </td>
+            <td class="view">
+              <span style="margin-left: 28px"></span>
+              <c:out value = "${match.getPlayerOne().getName()}"/>
+            <img src="./images/medal.png" height="20" width="20" alt=" (WIN)"/> </td>
           </c:when>
+          <c:otherwise>
+            <td class="view"><c:out value = "${match.getPlayerOne().getName()}"/>
+          </c:otherwise>
         </c:choose>
-        <td class="view"><c:out value = "${match.getPlayerTwo().getName()}"/>
-          <c:if test="${match.getPlayerTwo().getId().equals(winner)}">
-          <img src="./images/medal.png" height="20" width="20" alt=" (WIN)"/> </td>
-        </c:if>
+
+        <c:choose>
+          <c:when test="${match.getPlayerTwo().getId().equals(winner)}">
+            <td class="view">
+              <span style="margin-left: 28px"></span>
+              <c:out value = "${match.getPlayerTwo().getName()}"/>
+              <img src="./images/medal.png" height="20" width="20" alt=" (WIN)"/>
+            </td>
+          </c:when>
+          <c:otherwise>
+            <td class="view">
+              <c:out value = "${match.getPlayerTwo().getName()}"/>
+            </td>
+          </c:otherwise>
+        </c:choose>
       </tr>
     </c:forEach>
     <tr>

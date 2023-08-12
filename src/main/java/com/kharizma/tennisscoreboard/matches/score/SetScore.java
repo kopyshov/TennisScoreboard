@@ -41,7 +41,9 @@ public class SetScore extends Score<Integer> {
             if (getPlayerScore(player^1) < 5) {
                 return player == PLAYER_ONE ? GameState.PLAYER_ONE_WIN : GameState.PLAYER_TWO_WIN;
             } else {
-                isTieBreak = true;
+                if (getPlayerScore(player^1) == 6) {
+                    isTieBreak = true;
+                }
                 return GameState.ON_GOING;
             }
         }else {
