@@ -27,7 +27,7 @@ public class MatchScore extends Score<Integer> {
     }
 
     @Override
-    protected GameState upPoints(int player) {
+    public GameState upPoints(int player) {
         GameState state = tennisSet.upPoints(player);
         if (state == GameState.PLAYER_ONE_WIN) {
             if (CURRENT_SET != SET_THREE) {
