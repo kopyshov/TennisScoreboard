@@ -24,8 +24,8 @@
 <div class="content">
   <table>
     <tr>
-      <th>First Player</th>
-      <th>Second Player</th>
+      <th>Игрок #1</th>
+      <th>Игрок #2</th>
     </tr>
     <c:forEach var="match" items="${matches}">
       <tr>

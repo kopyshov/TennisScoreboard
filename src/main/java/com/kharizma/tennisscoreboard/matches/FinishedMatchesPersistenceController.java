@@ -71,7 +71,7 @@ public class FinishedMatchesPersistenceController implements IController {
         Match currentMatch = currentMatchController.getMatch(MatchUuid);
         MatchDao matchDao = new MatchDao();
         matchDao.save(currentMatch);
-        CurrentMatchController.getInstance().getMatches().remove(currentMatch.getId());
+        CurrentMatchController.getInstance().removeMatch(currentMatch.getId());
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }

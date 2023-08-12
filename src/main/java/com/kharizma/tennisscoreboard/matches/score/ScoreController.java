@@ -53,9 +53,8 @@ public class ScoreController implements IController {
 
     private void setAttributes(HttpServletRequest servletRequest) {
         CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
-        Map<UUID, Match> matches = currentMatchController.getMatches();
         UUID currentMatchId = UUID.fromString(servletRequest.getParameter("uuid"));
-        currentMatch = matches.get(currentMatchId);
+        currentMatch = currentMatchController.getMatch(currentMatchId);
         currentMatch.setWinnerPlayer(gameState);
         servletRequest.setAttribute("GameUuid", currentMatchId);
         servletRequest.setAttribute("playerOneName", currentMatch.getPlayerOne().getName());
@@ -72,5 +71,6 @@ public class ScoreController implements IController {
 
         servletRequest.setAttribute("playerOneId", currentMatch.getPlayerOne().getId().toString());
         servletRequest.setAttribute("playerTwoId", currentMatch.getPlayerTwo().getId().toString());
+        servletRequest.setAttribute("winnerId", currentMatch.getWinner().getId().toString());
     }
 }

@@ -2,7 +2,6 @@ package com.kharizma.tennisscoreboard.matches;
 
 import com.kharizma.tennisscoreboard.matches.score.GameState;
 import com.kharizma.tennisscoreboard.matches.score.MatchScore;
-import com.kharizma.tennisscoreboard.matches.score.old.OldScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.persistence.*;
 
@@ -24,9 +23,6 @@ public class Match implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Player winner;
-
-    @Transient
-    private OldScore oldScore;
 
     @Transient
     private MatchScore matchScore;
@@ -64,15 +60,6 @@ public class Match implements Serializable {
         this.winner = winner;
     }
 
-/*    public void setWinnerPlayer() {
-        int winPointsPlayerOne = this.getScore().games[0][0] + this.getScore().games[1][0];
-        int winPointsPlayerTwo = this.getScore().games[0][1] + this.getScore().games[1][1];
-        if(winPointsPlayerOne > winPointsPlayerTwo) {
-            setWinner(getPlayerOne());
-        } else {
-            setWinner(getPlayerTwo());
-        }
-    }*/
 public void setWinnerPlayer(GameState state) {
     if (state == GameState.PLAYER_ONE_WIN) {
         setWinner(getPlayerOne());
@@ -80,15 +67,6 @@ public void setWinnerPlayer(GameState state) {
         setWinner(getPlayerTwo());
     }
 }
-
-
-    public OldScore getScore() {
-        return oldScore;
-    }
-    public void setScore(OldScore oldScore) {
-        this.oldScore = oldScore;
-    }
-
     public MatchScore getMatchScore() {
         return matchScore;
     }
@@ -97,4 +75,3 @@ public void setWinnerPlayer(GameState state) {
         this.matchScore = matchScore;
     }
 }
-

@@ -12,7 +12,7 @@ public class Player implements Serializable {
     @Column(name = "PLAYER_ID", columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", nullable = false, unique = true)
     private String name;
 
 

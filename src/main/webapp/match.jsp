@@ -16,9 +16,9 @@
         <tr>
             <th>Имя</th>
             <th>Points</th>
-            <th>Set 1</th>
-            <th>Set 2</th>
-            <th>Set 3</th>
+            <th>Set #1</th>
+            <th>Set #2</th>
+            <th>Set #3</th>
             <th></th>
         </tr>
         <tr>

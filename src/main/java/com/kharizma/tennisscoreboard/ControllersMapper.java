@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.maincontrollers;
+package com.kharizma.tennisscoreboard;
 
 import com.kharizma.tennisscoreboard.controllers.IController;
 import jakarta.servlet.ServletException;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainController {
+public class ControllersMapper {
     IController service;
     private final Map<String, IController> services = new HashMap<>();
 

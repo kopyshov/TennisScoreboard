@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.controllers;
+package com.kharizma.tennisscoreboard;
 
 import com.kharizma.tennisscoreboard.matches.Match;
 import com.kharizma.tennisscoreboard.players.Player;
@@ -60,31 +60,31 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
 
             Player p1 = new Player();
             p1.generateId();
-            p1.setName("Петров");
+            p1.setName("А. Петров");
             session.merge(p1);
             session.flush();
 
             Player p2 = new Player();
             p2.generateId();
-            p2.setName("Иванов");
+            p2.setName("И. Иванов");
             session.merge(p2);
             session.flush();
 
             Player p3 = new Player();
             p3.generateId();
-            p3.setName("Сидоров");
+            p3.setName("С. Сидоров");
             session.merge(p3);
             session.flush();
 
             Player p4 = new Player();
             p4.generateId();
-            p4.setName("Ушаков");
+            p4.setName("У. Ушаков");
             session.merge(p4);
             session.flush();
 
             Player p5 = new Player();
             p5.generateId();
-            p5.setName("Баранов");
+            p5.setName("Б. Баранов");
             session.merge(p5);
             session.flush();
 

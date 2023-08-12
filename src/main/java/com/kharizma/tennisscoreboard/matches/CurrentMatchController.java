@@ -47,11 +47,10 @@ public class CurrentMatchController implements IController {
         servletResponse.sendRedirect(servletRequest.getContextPath() + "/match-score?uuid=" + uuid);
     }
 
-    public Map<UUID, Match> getMatches() {
-        return matches;
-    }
-
     public Match getMatch(UUID uuid) {
         return matches.get(uuid);
+    }
+    public void removeMatch(UUID uuid) {
+        matches.remove(uuid);
     }
 }
