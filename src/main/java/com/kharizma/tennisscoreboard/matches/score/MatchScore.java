@@ -56,16 +56,11 @@ public class MatchScore extends Score<Integer> {
     private Map<Integer, SetScore> getSets() {
         return sets;
     }
-
-    public SetScore getTennisSet() {
-        return tennisSet;
-    }
-
     public Integer getGamesScore(int set, int player) {
         return getSets().get(set).getPlayerScore(player);
     }
-
     public String getCurrentPoints(int player) {
-        return this.getTennisSet().getCurrentGame().getPoints(player);
+        return tennisSet.getCurrentGame().getCurrentGamePoints(player);
     }
+
 }

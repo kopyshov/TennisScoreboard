@@ -1,6 +1,5 @@
 import com.kharizma.tennisscoreboard.matches.score.GameState;
 import com.kharizma.tennisscoreboard.matches.score.MatchScore;
-import com.kharizma.tennisscoreboard.matches.score.SetScore;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,6 +13,7 @@ public class MatchScoreTest {
 
     @Test
     public void firstPlayerWonTwoSetsInRow() {
+        //Здесь Игрок #1 выигрывает 2 сета подряд и соответсвенно сет #3 не начинается
         MatchScore matchScore = new MatchScore();
         for (int i = 0; i < 47; i++) {
             matchScore.upPoints(PLAYER_ONE);
@@ -26,6 +26,7 @@ public class MatchScoreTest {
 
     @Test
     public void firstPlayerWonTwoSet() {
+        //Здесь игроки выигрывают сеты поочереди и соответсвенно играется сет #3 на победу
         MatchScore matchScore = new MatchScore();
         for (int i = 0; i < 47; i++) {
             matchScore.upPoints(PLAYER_ONE);
