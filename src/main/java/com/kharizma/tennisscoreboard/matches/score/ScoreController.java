@@ -1,6 +1,6 @@
 package com.kharizma.tennisscoreboard.matches.score;
 
-import com.kharizma.tennisscoreboard.controllers.IController;
+import com.kharizma.tennisscoreboard.controllers.MatchController;
 import com.kharizma.tennisscoreboard.matches.CurrentMatchController;
 import com.kharizma.tennisscoreboard.matches.Match;
 import jakarta.servlet.RequestDispatcher;
@@ -9,10 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.UUID;
 
-public class ScoreController implements IController {
+public class ScoreController implements MatchController {
 
     private Match currentMatch;
 

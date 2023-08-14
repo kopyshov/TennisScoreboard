@@ -1,6 +1,6 @@
 package com.kharizma.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.controllers.IController;
+import com.kharizma.tennisscoreboard.controllers.MatchController;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,16 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CurrentMatchController implements IController {
-
+public class CurrentMatchController implements MatchController {
     private final MatchDao matchDao;
     public static CurrentMatchController instance;
     private final Map<UUID, Match> matches = new HashMap<>();
-
     private CurrentMatchController() {
-        matchDao = new MatchDao();
+        matchDao = MatchDao.getInstance();
     }
-
     public static CurrentMatchController getInstance() {
         if(instance == null) {
             instance = new CurrentMatchController();
@@ -33,20 +30,16 @@ public class CurrentMatchController implements IController {
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/create.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }
-
     @Override
     public void executePost(HttpServletRequest servletRequest,
                            HttpServletResponse servletResponse) throws IOException {
         String name1 = servletRequest.getParameter("name1");
         String name2 = servletRequest.getParameter("name2");
-
         Match currentMatch = matchDao.createMatch(name1, name2);
         UUID uuid = currentMatch.getId();
         matches.put(currentMatch.getId(), currentMatch);
-
         servletResponse.sendRedirect(servletRequest.getContextPath() + "/match-score?uuid=" + uuid);
     }
-
     public Match getMatch(UUID uuid) {
         return matches.get(uuid);
     }

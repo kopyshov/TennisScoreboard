@@ -21,8 +21,17 @@ public class MatchDao {
     private static final String COUNT_MATCHES = "SELECT COUNT(*) FROM Match";
     private static final String ALL_MATCHES = "FROM Match";
 
-    public MatchDao() {
+    private static MatchDao instance;
+
+    private MatchDao() {
         playerDao = new PlayerDao();
+    }
+
+    public static MatchDao getInstance() {
+        if (instance == null) {
+            instance = new MatchDao();
+        }
+        return instance;
     }
 
     public Match createMatch(String playerName1, String playerName2) {
@@ -33,7 +42,6 @@ public class MatchDao {
         currentMatch.setPlayerOne(player1);
         currentMatch.setPlayerTwo(player2);
         currentMatch.setMatchScore(new MatchScore());
-        //currentMatch.setScore(new OldScore());
 
         return currentMatch;
     }

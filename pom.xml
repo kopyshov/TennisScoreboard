@@ -15,54 +15,62 @@
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
         <junit.version>5.9.2</junit.version>
+        <jakarta.version>6.0.0</jakarta.version>
+        <jstl.version>1.2</jstl.version>
+        <jstl-glassfish.version>2.0.0</jstl-glassfish.version>
+        <jstl-api.version>3.0.0</jstl-api.version>
+        <hibernate.version>6.1.7.Final</hibernate.version>
+        <jpamodelgen-jakarta.version>5.6.15.Final</jpamodelgen-jakarta.version>
+        <hikaricp.version>5.0.1</hikaricp.version>
+        <h2database.version>2.1.214</h2database.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
+            <version>${jakarta.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>2.0.0</version>
+            <version>${jstl-glassfish.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>2.0.0</version>
+            <version>${jstl-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>6.1.7.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-jpamodelgen-jakarta</artifactId>
-            <version>5.6.15.Final</version>
+            <version>${jpamodelgen-jakarta.version}</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>5.0.1</version>
+            <version>${hikaricp.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-hikaricp</artifactId>
-            <version>6.1.7.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>2.1.214</version>
+            <version>${h2database.version}</version>
         </dependency>
         <dependency>
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

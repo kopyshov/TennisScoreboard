@@ -5,7 +5,8 @@ import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
+import java.io.*;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -73,5 +74,39 @@ public void setWinnerPlayer(GameState state) {
 
     public void setMatchScore(MatchScore matchScore) {
         this.matchScore = matchScore;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Match match = (Match) o;
+
+        if (!Objects.equals(id, match.id)) return false;
+        if (!Objects.equals(playerOne, match.playerOne)) return false;
+        if (!Objects.equals(playerTwo, match.playerTwo)) return false;
+        if (!Objects.equals(winner, match.winner)) return false;
+        return Objects.equals(matchScore, match.matchScore);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (playerOne != null ? playerOne.hashCode() : 0);
+        result = 31 * result + (playerTwo != null ? playerTwo.hashCode() : 0);
+        result = 31 * result + (winner != null ? winner.hashCode() : 0);
+        result = 31 * result + (matchScore != null ? matchScore.hashCode() : 0);
+        return result;
+    }
+
+    @Serial
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
     }
 }
