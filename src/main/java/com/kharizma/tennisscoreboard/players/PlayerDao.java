@@ -1,36 +1,27 @@
 package com.kharizma.tennisscoreboard.players;
 
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
-import jakarta.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+import org.hibernate.exception.ConstraintViolationException;
+import
+
+import java.sql.SQLException;
 
 public class PlayerDao {
-    private static final String FIND_BY_NAME = "FROM Player WHERE name = :name ";
-
-    public Player insertPlayer(String name) {
+    public Player insertPlayer(final Player player) {
         Transaction transaction = null;
-        Player player = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Query<Player> query = session.createQuery(FIND_BY_NAME, Player.class);
-            query.setParameter("name", name);
-            try {
-                player = query.getSingleResult();
-            } catch (NoResultException nre) {
-                player = new Player();
-                player.generateId();
-                player.setName(name);
-            }
-            session.merge(player);
+            session.persist(player);
             session.flush();
             transaction.commit();
+        } catch (ConstraintViolationException e) {
+            return player;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            e.printStackTrace();
         }
         return player;
     }
