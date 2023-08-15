@@ -61,35 +61,40 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
             session.flush();
 
 
-            Match m1 = new Match(UUID.randomUUID());
+            Match m1 = new Match();
+            m1.setId(UUID.randomUUID());
             m1.setPlayerOne(p1);
             m1.setPlayerTwo(p2);
             m1.setWinner(p2);
             session.merge(m1);
             session.flush();
 
-            Match m2 = new Match(UUID.randomUUID());
+            Match m2 = new Match();
+            m2.setId(UUID.randomUUID());
             m2.setPlayerOne(p1);
             m2.setPlayerTwo(p3);
             m2.setWinner(p1);
             session.merge(m2);
             session.flush();
 
-            Match m3 = new Match(UUID.randomUUID());
+            Match m3 = new Match();
+            m3.setId(UUID.randomUUID());
             m3.setPlayerOne(p1);
             m3.setPlayerTwo(p4);
             m3.setWinner(p4);
             session.merge(m3);
             session.flush();
 
-            Match m4 = new Match(UUID.randomUUID());
+            Match m4 = new Match();
+            m4.setId(UUID.randomUUID());
             m4.setPlayerOne(p1);
             m4.setPlayerTwo(p5);
             m4.setWinner(p1);
             session.merge(m4);
             session.flush();
 
-            Match m5 = new Match(UUID.randomUUID());
+            Match m5 = new Match();
+            m5.setId(UUID.randomUUID());
             m5.setPlayerOne(p2);
             m5.setPlayerTwo(p3);
             m5.setWinner(p3);

@@ -1,8 +1,8 @@
 package com.kharizma.tennisscoreboard.matches;
 
 import com.kharizma.tennisscoreboard.controllers.MatchController;
+import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
-import com.kharizma.tennisscoreboard.players.PlayerDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,17 +34,21 @@ public class CurrentMatchController implements MatchController {
     public void executePost(HttpServletRequest servletRequest,
                            HttpServletResponse servletResponse) throws IOException {
         Player playerOne = new Player();
+        playerOne.generateId();
         String name1 = servletRequest.getParameter("name1");
         playerOne.setName(name1);
 
         Player playerTwo = new Player();
+        playerTwo.generateId();
         String name2 = servletRequest.getParameter("name2");
         playerTwo.setName(name2);
 
-        Match currentMatch = new Match(UUID.randomUUID());
-        UUID uuid = currentMatch.getId();
+        Match currentMatch = new Match();
+        UUID uuid = UUID.randomUUID();
+        currentMatch.setId(uuid);
         currentMatch.setPlayerOne(playerOne);
         currentMatch.setPlayerTwo(playerTwo);
+        currentMatch.setMatchScore(new MatchScore());
 
         matches.put(currentMatch.getId(), currentMatch);
         servletResponse.sendRedirect(servletRequest.getContextPath() + "/match-score?uuid=" + uuid);

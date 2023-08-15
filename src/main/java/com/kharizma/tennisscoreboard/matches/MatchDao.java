@@ -38,7 +38,13 @@ public class MatchDao {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.merge(currentMatch);
+
+            PlayerDao playerDao = new PlayerDao();
+            Player pl1 = playerDao.insertPlayer(currentMatch.getPlayerOne());
+            Player pl2 = playerDao.insertPlayer(currentMatch.getPlayerTwo());
+            currentMatch.setPlayerOne(pl1);
+            currentMatch.setPlayerTwo(pl2);
+            session.persist(currentMatch);
             session.flush();
             transaction.commit();
         } catch (Exception e) {

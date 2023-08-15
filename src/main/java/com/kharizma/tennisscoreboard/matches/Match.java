@@ -29,9 +29,6 @@ public class Match implements Serializable {
     private MatchScore matchScore;
 
     public Match() {}
-    public Match(UUID uuid) {
-        this.id = uuid;
-    }
 
     public UUID getId() {
         return id;
@@ -108,5 +105,9 @@ public void setWinnerPlayer(GameState state) {
     @Serial
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
+    }
+
+    public void setId(UUID uuid) {
+        this.id = uuid;
     }
 }
