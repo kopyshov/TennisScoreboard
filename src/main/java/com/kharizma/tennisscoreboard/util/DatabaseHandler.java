@@ -10,19 +10,14 @@ public class DatabaseHandler {
     }
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
-            sessionFactory = buildSessionFactory();
+            sessionFactory = new Configuration()
+                    .configure()
+                    .buildSessionFactory();
         }
         return sessionFactory;
     }
 
     public void shutdown() {
         sessionFactory.close();
-    }
-    private static SessionFactory buildSessionFactory() {
-        try {
-            return new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
     }
 }
