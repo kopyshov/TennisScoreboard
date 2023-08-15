@@ -1,6 +1,8 @@
 package com.kharizma.tennisscoreboard.matches;
 
 import com.kharizma.tennisscoreboard.controllers.MatchController;
+import com.kharizma.tennisscoreboard.players.Player;
+import com.kharizma.tennisscoreboard.players.PlayerDto;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,11 +14,9 @@ import java.util.Map;
 import java.util.UUID;
 
 public class CurrentMatchController implements MatchController {
-    private final MatchDao matchDao;
     public static CurrentMatchController instance;
     private final Map<UUID, Match> matches = new HashMap<>();
     private CurrentMatchController() {
-        matchDao = MatchDao.getInstance();
     }
     public static CurrentMatchController getInstance() {
         if(instance == null) {
@@ -33,10 +33,19 @@ public class CurrentMatchController implements MatchController {
     @Override
     public void executePost(HttpServletRequest servletRequest,
                            HttpServletResponse servletResponse) throws IOException {
+        Player playerOne = new Player();
         String name1 = servletRequest.getParameter("name1");
+        playerOne.setName(name1);
+
+        Player playerTwo = new Player();
         String name2 = servletRequest.getParameter("name2");
-        Match currentMatch = matchDao.createMatch(name1, name2);
+        playerTwo.setName(name2);
+
+        Match currentMatch = new Match(UUID.randomUUID());
         UUID uuid = currentMatch.getId();
+        currentMatch.setPlayerOne(playerOne);
+        currentMatch.setPlayerTwo(playerTwo);
+
         matches.put(currentMatch.getId(), currentMatch);
         servletResponse.sendRedirect(servletRequest.getContextPath() + "/match-score?uuid=" + uuid);
     }

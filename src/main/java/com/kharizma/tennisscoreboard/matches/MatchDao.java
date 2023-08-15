@@ -34,18 +34,6 @@ public class MatchDao {
         return instance;
     }
 
-    public Match createMatch(String playerName1, String playerName2) {
-        Player player1 = playerDao.insertPlayer(playerName1);
-        Player player2 = playerDao.insertPlayer(playerName2);
-
-        currentMatch = new Match(UUID.randomUUID());
-        currentMatch.setPlayerOne(player1);
-        currentMatch.setPlayerTwo(player2);
-        currentMatch.setMatchScore(new MatchScore());
-
-        return currentMatch;
-    }
-
     public void save(Match currentMatch) {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {

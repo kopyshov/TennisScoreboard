@@ -4,9 +4,6 @@ import com.kharizma.tennisscoreboard.util.DatabaseHandler;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
-import
-
-import java.sql.SQLException;
 
 public class PlayerDao {
     public Player insertPlayer(final Player player) {
