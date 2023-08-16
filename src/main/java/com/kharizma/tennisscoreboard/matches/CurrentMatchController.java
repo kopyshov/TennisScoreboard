@@ -3,6 +3,7 @@ package com.kharizma.tennisscoreboard.matches;
 import com.kharizma.tennisscoreboard.controllers.MatchController;
 import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
+import com.kharizma.tennisscoreboard.players.PlayerDao;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,10 +13,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CurrentMatchController implements MatchController {
     public static CurrentMatchController instance;
-    private final Map<UUID, Match> matches = new HashMap<>();
+    private final Map<UUID, Match> matches = new ConcurrentHashMap<>();
     private CurrentMatchController() {
     }
     public static CurrentMatchController getInstance() {

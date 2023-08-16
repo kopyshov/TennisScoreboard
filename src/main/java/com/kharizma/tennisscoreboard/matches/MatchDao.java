@@ -40,14 +40,27 @@ public class MatchDao {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Player pl1 = currentMatch.getPlayerOne();
-            Player pl2 = currentMatch.getPlayerTwo();
-            Player findplayer = playerDao.getPlayer(pl1);
-            if (findplayer == null) {
-                playerDao.insertPlayer(pl1);
+
+            Player findPlayer = playerDao.getPlayer(currentMatch.getPlayerOne());
+            if (findPlayer.getId() != null) {
+                currentMatch.getPlayerOne().setId(findPlayer.getId());
+            } else {
+                currentMatch.getPlayerOne().generateId();
+                playerDao.insertPlayer(currentMatch.getPlayerOne());
             }
-            currentMatch.setPlayerOne(findplayer);
-            playerDao.insertPlayer(pl2);
+
+            findPlayer = playerDao.getPlayer(currentMatch.getPlayerTwo());
+            if (findPlayer.getId() != null) {
+                currentMatch.getPlayerTwo().setId(findPlayer.getId());
+            } else {
+                currentMatch.getPlayerTwo().generateId();
+                playerDao.insertPlayer(currentMatch.getPlayerTwo());
+            }
+            System.out.println("Проверяем матч");
+            System.out.println("Игрок №1");
+            System.out.println(currentMatch.getPlayerOne().getId());
+            System.out.println("Игрок №2");
+            System.out.println(currentMatch.getPlayerTwo().getId());
             session.persist(currentMatch);
             session.flush();
             transaction.commit();

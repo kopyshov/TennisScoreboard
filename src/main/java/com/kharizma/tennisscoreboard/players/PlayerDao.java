@@ -9,6 +9,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class PlayerDao {
     public Player insertPlayer(Player player) throws HibernateException {
@@ -26,10 +27,11 @@ public class PlayerDao {
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             Query<Player> query = session.createQuery("from Player where name = :paramName", Player.class);
             query.setParameter("paramName", player.getName());
-            player = query.uniqueResult();
-            session.flush();
+            player = query.getSingleResult();
+/*            List<Player> players = query.getResultList();
+            player = players.get(0);*/
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
         return player;
     }
