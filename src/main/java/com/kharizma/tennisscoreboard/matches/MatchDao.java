@@ -48,9 +48,6 @@ public class MatchDao {
             session.flush();
             transaction.commit();
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
     }
