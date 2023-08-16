@@ -1,6 +1,7 @@
 package com.kharizma.tennisscoreboard.players;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.io.*;
 import java.util.Objects;
@@ -12,16 +13,31 @@ public class Player implements Serializable {
     @Id
     @Column(name = "PLAYER_ID", columnDefinition = "BINARY(16)")
     private UUID id;
+
+    @Transient
+    private UUID currentId;
+
     @Column(name = "NAME", nullable = false, unique = true)
     private String name;
+
     public Player() {
-    }
-    public UUID getId() {
-        return id;
     }
     public String getName() {
         return name;
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public UUID getCurrentId() {
+        return currentId;
+    }
+
+    public void setCurrentId(UUID currentId) {
+        this.currentId = currentId;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

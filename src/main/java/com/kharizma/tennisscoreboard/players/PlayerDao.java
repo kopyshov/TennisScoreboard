@@ -1,36 +1,35 @@
 package com.kharizma.tennisscoreboard.players;
 
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.query.Query;
+
+import java.sql.SQLException;
 
 public class PlayerDao {
-    public Player insertPlayer(Player player) {
-        Transaction transaction = null;
+    public Player insertPlayer(Player player) throws HibernateException {
+        Transaction transaction;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.merge(player);
+            session.persist(player);
             session.flush();
             transaction.commit();
-        } catch (ConstraintViolationException e) {
-            player = this.getPlayer(player);
-            return player;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
         }
         return player;
     }
 
     public Player getPlayer(Player player) {
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
-            session.find(Player.class, player.getName());
+            Query<Player> query = session.createQuery("from Player where name = :paramName", Player.class);
+            query.setParameter("paramName", player.getName());
+            player = query.uniqueResult();
             session.flush();
         } catch (Exception e) {
-            System.out.println("Не удалось найти игрока с таким именем");
-            e.printStackTrace();
+            return null;
         }
         return player;
     }

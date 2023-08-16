@@ -4,8 +4,10 @@ import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import com.kharizma.tennisscoreboard.players.PlayerDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -38,16 +40,21 @@ public class MatchDao {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-
-            PlayerDao playerDao = new PlayerDao();
-            Player pl1 = playerDao.insertPlayer(currentMatch.getPlayerOne());
-            Player pl2 = playerDao.insertPlayer(currentMatch.getPlayerTwo());
-            currentMatch.setPlayerOne(pl1);
-            currentMatch.setPlayerTwo(pl2);
+            Player pl1 = currentMatch.getPlayerOne();
+            Player pl2 = currentMatch.getPlayerTwo();
+            Player findplayer = playerDao.getPlayer(pl1);
+            if (findplayer == null) {
+                playerDao.insertPlayer(pl1);
+            }
+            currentMatch.setPlayerOne(findplayer);
+            playerDao.insertPlayer(pl2);
             session.persist(currentMatch);
             session.flush();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
     }

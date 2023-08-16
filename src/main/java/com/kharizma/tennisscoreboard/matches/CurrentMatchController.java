@@ -34,12 +34,12 @@ public class CurrentMatchController implements MatchController {
     public void executePost(HttpServletRequest servletRequest,
                            HttpServletResponse servletResponse) throws IOException {
         Player playerOne = new Player();
-        playerOne.generateId();
+        playerOne.setCurrentId(UUID.randomUUID());
         String name1 = servletRequest.getParameter("name1");
         playerOne.setName(name1);
 
         Player playerTwo = new Player();
-        playerTwo.generateId();
+        playerTwo.setCurrentId(UUID.randomUUID());
         String name2 = servletRequest.getParameter("name2");
         playerTwo.setName(name2);
 

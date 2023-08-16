@@ -4,6 +4,7 @@ import com.kharizma.tennisscoreboard.matches.score.GameState;
 import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 import java.io.*;
 import java.util.Objects;
@@ -16,13 +17,13 @@ public class Match implements Serializable {
     @Column(name = "MATCH_ID", columnDefinition = "BINARY(16)")
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private Player playerOne;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private Player playerTwo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private Player winner;
 
     @Transient

@@ -8,10 +8,11 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ControllersMapper {
     MatchController service;
-    private final Map<String, MatchController> services = new HashMap<>();
+    private final Map<String, MatchController> services = new ConcurrentHashMap<>();
 
     public void handleGetRequest(
             HttpServletRequest servletRequest,
