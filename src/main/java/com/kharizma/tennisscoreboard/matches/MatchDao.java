@@ -12,6 +12,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 public class MatchDao {
     private final PlayerDao playerDao;
@@ -49,20 +50,28 @@ public class MatchDao {
         }
     }
 
+    public static final int PLAYER_ONE = 0;
+    public static final int PLAYER_TWO = 1;
     private void findOrInsertPlayer(Match match) {
-        Player findPlayer = playerDao.getPlayer(match.getPlayerOne());
-        if (findPlayer.getId() != null) {
-            match.getPlayerOne().setId(findPlayer.getId());
-        } else {
-            playerDao.insertPlayer(match.getPlayerOne());
-        }
-
-        findPlayer = playerDao.getPlayer(match.getPlayerTwo());
-        if (findPlayer.getId() != null) {
-            match.getPlayerTwo().setId(findPlayer.getId());
-        } else {
-            playerDao.insertPlayer(match.getPlayerTwo());
-        }
+/*        Player findPlayer;
+        for (int player = PLAYER_ONE; player <= PLAYER_TWO; player++) {
+            findPlayer = playerDao.getPlayer(match.getPlayer(player));
+            if (findPlayer.getId() != null) {
+                match.getPlayer(player).setId(findPlayer.getId());
+            } else {
+                playerDao.insertPlayer(match.getPlayer(player));
+            }
+        }*/
+        IntStream
+                .rangeClosed(PLAYER_ONE, PLAYER_TWO)
+                .forEach(player -> {
+                    Player findPlayer = playerDao.getPlayer(match.getPlayer(player));
+                    if (findPlayer.getId() != null) {
+                        match.getPlayer(player).setId(findPlayer.getId());
+                    } else {
+                        playerDao.insertPlayer(match.getPlayer(player));
+                    }
+                });
     }
 
     public Long getCountMatches() {
