@@ -24,17 +24,15 @@ public class ScoreController implements MatchController {
 
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-        setAttributes(servletRequest);
+        setAttributes(servletRequest, GameState.ON_GOING);
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/match.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }
 
-    private GameState gameState;
-
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID uuid = UUID.fromString(servletRequest.getParameter("playerId"));
-        gameState = GameState.ON_GOING;
+        GameState gameState = GameState.ON_GOING;
         if(currentMatch.getPlayer(PLAYER_ONE).getCurrentId().equals(uuid)) {
             gameState = currentMatch.getMatchScore().upPoints(PLAYER_ONE);
         }
@@ -42,7 +40,7 @@ public class ScoreController implements MatchController {
             gameState = currentMatch.getMatchScore().upPoints(PLAYER_TWO);
         }
         if(gameState != GameState.ON_GOING) {
-            setAttributes(servletRequest);
+            setAttributes(servletRequest, gameState);
             RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/gameover.jsp");
             requestDispatcher.forward(servletRequest, servletResponse);
             return;
@@ -50,26 +48,11 @@ public class ScoreController implements MatchController {
         executeGet(servletRequest, servletResponse);
     }
 
-    private void setAttributes(HttpServletRequest servletRequest) {
+    private void setAttributes(HttpServletRequest servletRequest, GameState gameState) {
         CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
         UUID currentMatchId = UUID.fromString(servletRequest.getParameter("uuid"));
         currentMatch = currentMatchController.getMatch(currentMatchId);
         currentMatch.setWinnerPlayer(gameState);
-        servletRequest.setAttribute("GameUuid", currentMatchId);
-        servletRequest.setAttribute("playerOneName", currentMatch.getPlayer(PLAYER_ONE).getName());
-        servletRequest.setAttribute("playerOneSetOne", currentMatch.getMatchScore().getGamesScore(SET_ONE, PLAYER_ONE));
-        servletRequest.setAttribute("playerOneSetTwo", currentMatch.getMatchScore().getGamesScore(SET_TWO, PLAYER_ONE));
-        servletRequest.setAttribute("playerOneSetThree", currentMatch.getMatchScore().getGamesScore(SET_THREE, PLAYER_ONE));
-        servletRequest.setAttribute("playerOnePoints", currentMatch.getMatchScore().getCurrentPoints(PLAYER_ONE));
-
-        servletRequest.setAttribute("playerTwoName", currentMatch.getPlayer(PLAYER_TWO).getName());
-        servletRequest.setAttribute("playerTwoSetOne", currentMatch.getMatchScore().getGamesScore(SET_ONE, PLAYER_TWO));
-        servletRequest.setAttribute("playerTwoSetTwo", currentMatch.getMatchScore().getGamesScore(SET_TWO, PLAYER_TWO));
-        servletRequest.setAttribute("playerTwoSetThree", currentMatch.getMatchScore().getGamesScore(SET_THREE, PLAYER_TWO));
-        servletRequest.setAttribute("playerTwoPoints", currentMatch.getMatchScore().getCurrentPoints(PLAYER_TWO));
-
-        servletRequest.setAttribute("playerOneId", currentMatch.getPlayer(PLAYER_ONE).getCurrentId().toString());
-        servletRequest.setAttribute("playerTwoId", currentMatch.getPlayer(PLAYER_TWO).getCurrentId().toString());
-        servletRequest.setAttribute("winnerId", currentMatch.getWinner().getCurrentId().toString());
+        servletRequest.setAttribute("match", currentMatch);
     }
 }

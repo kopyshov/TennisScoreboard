@@ -11,7 +11,7 @@
 <div class="content">
     <table>
         <tr>
-            <td colspan="5">ID матча: ${GameUuid} </td>
+            <td colspan="5">ID матча: ${match.getId()} </td>
         </tr>
         <tr>
             <th>Имя</th>
@@ -22,26 +22,26 @@
             <th></th>
         </tr>
         <tr>
-            <td class="tablo">${playerOneName}</td>
-            <td class="tablo">${playerOnePoints}</td>
-            <td class="tablo">${playerOneSetOne}</td>
-            <td class="tablo">${playerOneSetTwo}</td>
-            <td class="tablo">${playerOneSetThree}</td>
+            <td class="tablo">${match.getPlayer(0).getName()}</td>
+            <td class="tablo">${match.getMatchScore().getCurrentPoints(0)}</td>
+            <td class="tablo">${match.getMatchScore().getGamesScore(0, 0)}</td>
+            <td class="tablo">${match.getMatchScore().getGamesScore(1, 0)}</td>
+            <td class="tablo">${match.getMatchScore().getGamesScore(2, 0)}</td>
             <td class="btn">
                 <form method="post">
-                    <button class="upBtn" name="playerId" value="${playerOneId}">UP</button>
+                    <button class="upBtn" name="playerId" value="${match.getPlayer(0).getCurrentId()}">UP</button>
                 </form>
             </td>
         </tr>
         <tr>
-            <td class="tablo">${playerTwoName}</td>
-            <td class="tablo">${playerTwoPoints}</td>
-            <td class="tablo">${playerTwoSetOne}</td>
-            <td class="tablo">${playerTwoSetTwo}</td>
-            <td class="tablo">${playerTwoSetThree}</td>
+            <td class="tablo">${match.getPlayer(1).getName()}</td>
+            <td class="tablo">${match.getMatchScore().getCurrentPoints(1)}</td>
+            <td class="tablo">${match.getMatchScore().getGamesScore(0, 1)}</td>
+            <td class="tablo">${match.getMatchScore().getGamesScore(1, 1)}</td>
+            <td class="tablo">${match.getMatchScore().getGamesScore(2, 1)}</td>
             <td class="btn">
                 <form method="post">
-                    <button class="upBtn" name="playerId" value="${playerTwoId}">UP</button>
+                    <button class="upBtn" name="playerId" value="${match.getPlayer(1).getCurrentId()}">UP</button>
                 </form>
             </td>
         </tr>
