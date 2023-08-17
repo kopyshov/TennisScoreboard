@@ -35,20 +35,13 @@ public class FinishedMatchesPersistenceController implements MatchController {
             matchesQuantity = matchDao.getCountMatchesByNameFilter(playerName);
             pagesQuantity = countPages(matchesQuantity);
             matches = matchDao.getMatchesByNameFilterWithOffset(playerName, offset, ONE_PAGE_LIMIT);
-            if(matches.isEmpty()){
-                Match emptyMatch = new Match();
-                Player emptyPlayer = new Player();
-                emptyPlayer.setName("-");
-                emptyMatch.setPlayerOne(emptyPlayer);
-                emptyMatch.setPlayerTwo(emptyPlayer);
-                emptyMatch.setWinner(emptyPlayer);
-                matches.add(emptyMatch);
-            }
+            isEmptyMatch(matches);
         } else {
             playerName = "";
             matchesQuantity = matchDao.getCountMatches();
             pagesQuantity = countPages(matchesQuantity);
             matches = matchDao.getAllMatchesWithOffset(offset, ONE_PAGE_LIMIT);
+            isEmptyMatch(matches);
         }
         servletRequest.setAttribute("player_name", playerName);
         servletRequest.setAttribute("matches", matches);
@@ -58,6 +51,17 @@ public class FinishedMatchesPersistenceController implements MatchController {
         requestDispatcher.forward(servletRequest, servletResponse);
     }
 
+    private void isEmptyMatch(List<Match> matches) {
+        if(matches.isEmpty()){
+            Match emptyMatch = new Match();
+            Player emptyPlayer = new Player();
+            emptyPlayer.setName("-");
+            emptyMatch.setPlayerOne(emptyPlayer);
+            emptyMatch.setPlayerTwo(emptyPlayer);
+            emptyMatch.setWinner(emptyPlayer);
+            matches.add(emptyMatch);
+        }
+    }
 
 
     @Override

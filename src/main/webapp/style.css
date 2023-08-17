@@ -39,6 +39,12 @@
     background-color: white;
 }
 
+.errorMessage {
+    font-size: 10px;
+    font-weight: normal;
+    color: red;
+}
+
 td {
     height: 50px;
     background-color: black;
