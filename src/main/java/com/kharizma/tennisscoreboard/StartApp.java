@@ -16,10 +16,7 @@ import java.util.UUID;
 
 @WebListener
 public class StartApp implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
-    DatabaseHandler databaseHandler;
-    public StartApp() {
-
-    }
+    public StartApp() {}
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -28,13 +25,12 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
         addSomeMatches();
     }
 
-
     public void addSomeMatches() {
         try(Session session = DatabaseHandler.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
             MatchDao matchDao = MatchDao.getInstance();
-            PlayerDao playerDao = new PlayerDao();
+            PlayerDao playerDao = PlayerDao.getInstance();
 
 
             Player p1 = new Player();

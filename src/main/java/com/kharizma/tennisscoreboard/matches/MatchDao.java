@@ -15,7 +15,6 @@ import java.util.UUID;
 
 public class MatchDao {
     private final PlayerDao playerDao;
-    Match currentMatch;
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_FILTER_BY_NAME = "SELECT COUNT(*) FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
@@ -26,7 +25,7 @@ public class MatchDao {
     private static MatchDao instance;
 
     private MatchDao() {
-        playerDao = new PlayerDao();
+        playerDao = PlayerDao.getInstance();
     }
 
     public static MatchDao getInstance() {

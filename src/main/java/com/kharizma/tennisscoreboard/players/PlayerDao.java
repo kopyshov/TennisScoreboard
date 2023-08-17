@@ -1,5 +1,6 @@
 package com.kharizma.tennisscoreboard.players;
 
+import com.kharizma.tennisscoreboard.matches.MatchDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,6 +13,14 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class PlayerDao {
+    private static PlayerDao instance;
+    private PlayerDao() {}
+    public static PlayerDao getInstance() {
+        if (instance == null) {
+            instance = new PlayerDao();
+        }
+        return instance;
+    }
     public Player insertPlayer(Player player) throws HibernateException {
         Transaction transaction;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
@@ -23,11 +32,11 @@ public class PlayerDao {
         return player;
     }
 
+    public static final String GET_PLAYER_BY_NAME = "from Player where name = :paramName";
     public Player getPlayer(Player player) {
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
-            Query<Player> query = session.createQuery("from Player where name = :paramName", Player.class);
+            Query<Player> query = session.createQuery(GET_PLAYER_BY_NAME, Player.class);
             query.setParameter("paramName", player.getName());
-            //player = query.getSingleResult();
             List<Player> players = query.getResultList();
             if (players.isEmpty()) {
                 player = new Player();
