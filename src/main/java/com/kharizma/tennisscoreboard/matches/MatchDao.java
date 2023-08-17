@@ -18,12 +18,10 @@ public class MatchDao {
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_FILTER_BY_NAME = "SELECT COUNT(*) FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
-
     private static final String COUNT_MATCHES = "SELECT COUNT(*) FROM Match";
     private static final String ALL_MATCHES = "FROM Match";
 
     private static MatchDao instance;
-
     private MatchDao() {
         playerDao = PlayerDao.getInstance();
     }
@@ -39,27 +37,7 @@ public class MatchDao {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-
-            Player findPlayer = playerDao.getPlayer(currentMatch.getPlayerOne());
-            if (findPlayer.getId() != null) {
-                currentMatch.getPlayerOne().setId(findPlayer.getId());
-            } else {
-                //currentMatch.getPlayerOne().generateId();
-                playerDao.insertPlayer(currentMatch.getPlayerOne());
-            }
-
-            findPlayer = playerDao.getPlayer(currentMatch.getPlayerTwo());
-            if (findPlayer.getId() != null) {
-                currentMatch.getPlayerTwo().setId(findPlayer.getId());
-            } else {
-                //currentMatch.getPlayerTwo().generateId();
-                playerDao.insertPlayer(currentMatch.getPlayerTwo());
-            }
-            System.out.println("Проверяем матч");
-            System.out.println("Игрок №1");
-            System.out.println(currentMatch.getPlayerOne().getId());
-            System.out.println("Игрок №2");
-            System.out.println(currentMatch.getPlayerTwo().getId());
+            findOrInsertPlayer(currentMatch);
             session.persist(currentMatch);
             session.flush();
             transaction.commit();
@@ -68,6 +46,22 @@ public class MatchDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+        }
+    }
+
+    private void findOrInsertPlayer(Match match) {
+        Player findPlayer = playerDao.getPlayer(match.getPlayerOne());
+        if (findPlayer.getId() != null) {
+            match.getPlayerOne().setId(findPlayer.getId());
+        } else {
+            playerDao.insertPlayer(match.getPlayerOne());
+        }
+
+        findPlayer = playerDao.getPlayer(match.getPlayerTwo());
+        if (findPlayer.getId() != null) {
+            match.getPlayerTwo().setId(findPlayer.getId());
+        } else {
+            playerDao.insertPlayer(match.getPlayerTwo());
         }
     }
 

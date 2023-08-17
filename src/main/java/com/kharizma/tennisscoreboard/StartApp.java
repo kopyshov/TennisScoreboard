@@ -2,13 +2,14 @@ package com.kharizma.tennisscoreboard;
 
 import com.kharizma.tennisscoreboard.matches.Match;
 import com.kharizma.tennisscoreboard.matches.MatchDao;
-import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import com.kharizma.tennisscoreboard.players.PlayerDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
+import jakarta.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.http.HttpSessionListener;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -32,7 +33,6 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
             MatchDao matchDao = MatchDao.getInstance();
             PlayerDao playerDao = PlayerDao.getInstance();
 
-
             Player p1 = new Player();
             p1.setName("А. Петров");
 
@@ -53,7 +53,6 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
             playerDao.insertPlayer(p3);
             playerDao.insertPlayer(p4);
             playerDao.insertPlayer(p5);
-
 
             Match m1 = new Match();
             m1.setId(UUID.randomUUID());
@@ -90,7 +89,6 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
             matchDao.save(m3);
             matchDao.save(m4);
             matchDao.save(m5);
-
 
             tx.commit();
         } catch (Exception e) {

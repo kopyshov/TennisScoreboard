@@ -15,40 +15,29 @@ public class Player implements Serializable {
     @UuidGenerator
     @Column(name = "PLAYER_ID")
     private UUID id;
+    @Column(name = "NAME", nullable = false, unique = true)
+    private String name;
 
     @Transient
     private UUID currentId;
 
-    @Column(name = "NAME", nullable = false, unique = true)
-    private String name;
-
-    public Player() {
-    }
-    public String getName() {
-        return name;
-    }
+    public Player() {}
 
     public UUID getId() {
         return id;
     }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
+    public void setId(UUID id) {this.id = id;}
     public UUID getCurrentId() {
         return currentId;
     }
-
     public void setCurrentId(UUID currentId) {
         this.currentId = currentId;
     }
-
+    public String getName() {
+        return name;
+    }
     public void setName(String name) {
         this.name = name;
-    }
-    public void generateId() {
-        id = UUID.randomUUID();
     }
     @Override
     public boolean equals(Object o) {
@@ -65,7 +54,6 @@ public class Player implements Serializable {
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
     }
-
     @Serial
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
