@@ -1,13 +1,17 @@
 package com.kharizma.tennisscoreboard.matches;
 
+import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import com.kharizma.tennisscoreboard.players.PlayerDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MatchDao {
     private final PlayerDao playerDao;
@@ -36,12 +40,28 @@ public class MatchDao {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            List<Player> foundPlayers = playerDao.getPlayers(currentMatch);
-            Player playerOne = currentMatch.getPlayerOne();
-            Player playerTwo = currentMatch.getPlayerTwo();
-            generateIdOrGetFromDatabase(foundPlayers, playerOne);
-            generateIdOrGetFromDatabase(foundPlayers, playerTwo);
-            session.merge(currentMatch);
+
+            Player findPlayer = playerDao.getPlayer(currentMatch.getPlayerOne());
+            if (findPlayer.getId() != null) {
+                currentMatch.getPlayerOne().setId(findPlayer.getId());
+            } else {
+                //currentMatch.getPlayerOne().generateId();
+                playerDao.insertPlayer(currentMatch.getPlayerOne());
+            }
+
+            findPlayer = playerDao.getPlayer(currentMatch.getPlayerTwo());
+            if (findPlayer.getId() != null) {
+                currentMatch.getPlayerTwo().setId(findPlayer.getId());
+            } else {
+                //currentMatch.getPlayerTwo().generateId();
+                playerDao.insertPlayer(currentMatch.getPlayerTwo());
+            }
+            System.out.println("Проверяем матч");
+            System.out.println("Игрок №1");
+            System.out.println(currentMatch.getPlayerOne().getId());
+            System.out.println("Игрок №2");
+            System.out.println(currentMatch.getPlayerTwo().getId());
+            session.persist(currentMatch);
             session.flush();
             transaction.commit();
         } catch (Exception e) {
@@ -49,17 +69,6 @@ public class MatchDao {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
-    }
-
-    private void generateIdOrGetFromDatabase(List<Player> foundPlayers, Player pl1) {
-        if (pl1.equals(foundPlayers.get(0))) {
-            pl1.setId(foundPlayers.get(0).getId());
-        } else if (pl1.equals(foundPlayers.get(1))) {
-            pl1.setId(foundPlayers.get(1).getId());
-        } else {
-            pl1.generateId();
-            playerDao.insertPlayer(pl1);
         }
     }
 

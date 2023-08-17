@@ -5,6 +5,7 @@ import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.io.*;
 import java.util.Objects;
@@ -14,10 +15,11 @@ import java.util.UUID;
 @Table(name = "MATCH")
 public class Match implements Serializable {
     @Id
-    @Column(name = "MATCH_ID", columnDefinition = "BINARY(16)")
+    @Column(name = "MATCH_ID")
     private UUID id;
 
     @OneToOne(fetch = FetchType.EAGER)
+
     private Player playerOne;
 
     @OneToOne(fetch = FetchType.EAGER)

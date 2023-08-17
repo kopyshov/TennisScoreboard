@@ -1,17 +1,17 @@
 package com.kharizma.tennisscoreboard.players;
 
-import com.kharizma.tennisscoreboard.matches.Match;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 
 public class PlayerDao {
-    public static final String GET_PLAYERS_BY_FILTER_NAME = "from Player where name = :plOneName OR name = :plTwoName";
     public Player insertPlayer(Player player) throws HibernateException {
         Transaction transaction;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
@@ -23,16 +23,20 @@ public class PlayerDao {
         return player;
     }
 
-    public List<Player> getPlayers(Match match) {
-        List<Player> players = new ArrayList<>();
+    public Player getPlayer(Player player) {
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
-            Query<Player> query = session.createQuery(GET_PLAYERS_BY_FILTER_NAME, Player.class);
-            query.setParameter("plOneName", match.getPlayerOne().getName());
-            query.setParameter("plTwoName", match.getPlayerTwo().getName());
-            players = query.getResultList();
+            Query<Player> query = session.createQuery("from Player where name = :paramName", Player.class);
+            query.setParameter("paramName", player.getName());
+            //player = query.getSingleResult();
+            List<Player> players = query.getResultList();
+            if (players.isEmpty()) {
+                player = new Player();
+            } else {
+                player = players.get(0);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return players;
+        return player;
     }
 }

@@ -11,7 +11,9 @@ import java.util.UUID;
 @Table(name = "PLAYER")
 public class Player implements Serializable {
     @Id
-    @Column(name = "PLAYER_ID", columnDefinition = "BINARY(16)")
+    @GeneratedValue
+    @UuidGenerator
+    @Column(name = "PLAYER_ID")
     private UUID id;
 
     @Transient
