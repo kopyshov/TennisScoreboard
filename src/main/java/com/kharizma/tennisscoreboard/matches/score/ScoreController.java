@@ -17,9 +17,6 @@ public class ScoreController implements MatchController {
 
     private static final int PLAYER_ONE = 0;
     private static final int PLAYER_TWO = 1;
-    public static final int SET_ONE = 0;
-    public static final int SET_TWO = 1;
-    public static final int SET_THREE = 2;
 
 
     @Override

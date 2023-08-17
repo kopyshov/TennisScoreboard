@@ -14,22 +14,30 @@ public class RegularGamePointsScoreTest {
      @Test
     public void advantagePointsTest() {
         RegularGameScore regularGameScore = new RegularGameScore();
-        int player = PLAYER_ONE;
-        for (int i = 0; i < 27; i++) {
-            regularGameScore.upPoints(player);
-            player = player^1;
+        int player = PLAYER_ONE; //можно поменять на игрока PLAYER_TWO
+        int games = 1; //может быть любым числом
+
+        int nextPlayer = player;
+        //игр дожно быть не меньше 8 (у каждого игрока будет по 40 очков (ровно)
+        for (int i = 1; i < 8 + 2*(player + games); i++) {
+            regularGameScore.upPoints(nextPlayer);
+            nextPlayer = nextPlayer^1;
         }
-         assertEquals(ADVANTAGE, regularGameScore.getPlayerScore(PLAYER_ONE));
+         assertEquals(ADVANTAGE, regularGameScore.getPlayerScore(player));
     }
 
     @Test
     public void winPlayerAfterAdvantage() {
         RegularGameScore regularGameScore = new RegularGameScore();
-        int player = PLAYER_ONE;
-        for (int i = 0; i < 27; i++) {
-            regularGameScore.upPoints(player);
-            player = player^1;
+        int player = PLAYER_ONE; //можно поменять на игрока PLAYER_TWO
+        int games = 2; //может быть любым числом
+
+        int nextPlayer = player;
+        //игр дожно быть не меньше 8 (у каждого игрока будет по 40 очков (ровно)
+        for (int i = 1; i < 8 + 2*(player + games); i++) {
+            regularGameScore.upPoints(nextPlayer);
+            nextPlayer = nextPlayer^1;
         }
-        assertEquals(PLAYER_ONE_WIN, regularGameScore.upPoints(player^1));
+        assertEquals(PLAYER_ONE_WIN, regularGameScore.upPoints(player));
     }
 }

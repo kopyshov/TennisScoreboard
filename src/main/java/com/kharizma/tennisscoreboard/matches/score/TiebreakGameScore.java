@@ -15,7 +15,7 @@ public class TiebreakGameScore extends GameScore<Integer> {
     }
 
     @Override
-    protected GameState upPoints(int player) {
+    public GameState upPoints(int player) {
         score.set(player, getPlayerScore(player) + 1);
         Integer playerScore = getPlayerScore(player);
         if (playerScore > 6) {
