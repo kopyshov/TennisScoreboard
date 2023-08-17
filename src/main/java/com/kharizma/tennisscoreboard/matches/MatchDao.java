@@ -1,28 +1,29 @@
 package com.kharizma.tennisscoreboard.matches;
 
+import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import com.kharizma.tennisscoreboard.players.PlayerDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.UUID;
 
 public class MatchDao {
     private final PlayerDao playerDao;
-    Match currentMatch;
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_FILTER_BY_NAME = "SELECT COUNT(*) FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
-
     private static final String COUNT_MATCHES = "SELECT COUNT(*) FROM Match";
     private static final String ALL_MATCHES = "FROM Match";
 
     private static MatchDao instance;
-
     private MatchDao() {
-        playerDao = new PlayerDao();
+        playerDao = PlayerDao.getInstance();
     }
 
     public static MatchDao getInstance() {
@@ -36,12 +37,8 @@ public class MatchDao {
         Transaction transaction = null;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            List<Player> foundPlayers = playerDao.getPlayers(currentMatch);
-            Player playerOne = currentMatch.getPlayerOne();
-            Player playerTwo = currentMatch.getPlayerTwo();
-            generateIdOrGetFromDatabase(foundPlayers, playerOne);
-            generateIdOrGetFromDatabase(foundPlayers, playerTwo);
-            session.merge(currentMatch);
+            findOrInsertPlayer(currentMatch);
+            session.persist(currentMatch);
             session.flush();
             transaction.commit();
         } catch (Exception e) {
@@ -52,14 +49,19 @@ public class MatchDao {
         }
     }
 
-    private void generateIdOrGetFromDatabase(List<Player> foundPlayers, Player pl1) {
-        if (pl1.equals(foundPlayers.get(0))) {
-            pl1.setId(foundPlayers.get(0).getId());
-        } else if (pl1.equals(foundPlayers.get(1))) {
-            pl1.setId(foundPlayers.get(1).getId());
+    private void findOrInsertPlayer(Match match) {
+        Player findPlayer = playerDao.getPlayer(match.getPlayerOne());
+        if (findPlayer.getId() != null) {
+            match.getPlayerOne().setId(findPlayer.getId());
         } else {
-            pl1.generateId();
-            playerDao.insertPlayer(pl1);
+            playerDao.insertPlayer(match.getPlayerOne());
+        }
+
+        findPlayer = playerDao.getPlayer(match.getPlayerTwo());
+        if (findPlayer.getId() != null) {
+            match.getPlayerTwo().setId(findPlayer.getId());
+        } else {
+            playerDao.insertPlayer(match.getPlayerTwo());
         }
     }
 
