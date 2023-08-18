@@ -1,15 +1,11 @@
 package com.kharizma.tennisscoreboard.players;
 
-import com.kharizma.tennisscoreboard.matches.MatchDao;
 import com.kharizma.tennisscoreboard.util.DatabaseHandler;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class PlayerDao {
