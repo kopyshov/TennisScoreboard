@@ -45,13 +45,19 @@ public class Match implements Serializable {
     public void setId(UUID uuid) {
         this.id = uuid;
     }
-    public Player getPlayerOne() {
+    public Player getPlayer(int player) {
+        if (player == 0) {
+            return getPlayerOne();
+        }
+        return getPlayerTwo();
+    }
+    private Player getPlayerOne() {
         return playerOne;
     }
     public void setPlayerOne(Player playerOne) {
         this.playerOne = playerOne;
     }
-    public Player getPlayerTwo() {
+    private Player getPlayerTwo() {
         return playerTwo;
     }
     public void setPlayerTwo(Player playerTwo) {

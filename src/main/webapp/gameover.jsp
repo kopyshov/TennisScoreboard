@@ -11,7 +11,7 @@
 <div class="content">
   <table>
     <tr>
-      <td colspan="5">ID матча: ${GameUuid} </td>
+      <td colspan="5">ID матча: ${match.getId()} </td>
     </tr>
     <tr>
       <th>Имя</th>
@@ -21,24 +21,24 @@
       <th></th>
     </tr>
     <tr>
-      <td class="tablo">${playerOneName}
-        <c:if test="${playerOneId.equals(winnerId)}"><img src="images/medal.png" height="20" width="20" alt=""></c:if>
+      <td class="tablo">${match.getPlayer(0).getName()}
+        <c:if test="${match.getPlayer(0).getCurrentId().equals(match.getWinner().getCurrentId())}"><img src="images/medal.png" height="20" width="20" alt=""></c:if>
       </td>
-      <td class="tablo">${playerOneSetOne}</td>
-      <td class="tablo">${playerOneSetTwo}</td>
-      <td class="tablo">${playerOneSetThree}</td>
+      <td class="tablo">${match.getMatchScore().getGamesScore(0, 0)}</td>
+      <td class="tablo">${match.getMatchScore().getGamesScore(1, 0)}</td>
+      <td class="tablo">${match.getMatchScore().getGamesScore(2, 0)}</td>
     </tr>
     <tr>
-      <td class="tablo">${playerTwoName}
-        <c:if test="${playerTwoId.equals(winnerId)}"><img src="images/medal.png" height="20" width="20" alt=""></c:if>
+      <td class="tablo">${match.getPlayer(1).getName()}
+        <c:if test="${match.getPlayer(1).getCurrentId().equals(match.getWinner().getCurrentId())}"><img src="images/medal.png" height="20" width="20" alt=""></c:if>
       </td>
-      <td class="tablo">${playerTwoSetOne}</td>
-      <td class="tablo">${playerTwoSetTwo}</td>
-      <td class="tablo">${playerTwoSetThree}</td>
+      <td class="tablo">${match.getMatchScore().getGamesScore(0, 1)}</td>
+      <td class="tablo">${match.getMatchScore().getGamesScore(1, 1)}</td>
+      <td class="tablo">${match.getMatchScore().getGamesScore(2, 1)}</td>
     </tr>
     <tr>
       <td>
-        <form method="post" action="${pageContext.request.contextPath}/matches?match-uuid=${GameUuid}">
+        <form method="post" action="${pageContext.request.contextPath}/matches?match-uuid=${match.getId()}">
           <button class="upBtn">Сохранить результат</button>
         </form>
       </td>

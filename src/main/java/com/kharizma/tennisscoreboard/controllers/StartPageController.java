@@ -13,8 +13,6 @@ public class StartPageController implements MatchController {
             HttpServletRequest servletRequest,
             HttpServletResponse servletResponse) throws ServletException, IOException
     {
-
-
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/index.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }
@@ -22,8 +20,7 @@ public class StartPageController implements MatchController {
     @Override
     public void executePost(
             HttpServletRequest servletRequest,
-            HttpServletResponse servletResponse)
-    {
-
+            HttpServletResponse servletResponse) throws ServletException, IOException {
+        executeGet(servletRequest, servletResponse);
     }
 }
