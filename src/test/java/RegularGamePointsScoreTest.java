@@ -1,5 +1,3 @@
-import com.kharizma.tennisscoreboard.matches.score.GameState;
-import com.kharizma.tennisscoreboard.matches.score.RegularGamePoints;
 import com.kharizma.tennisscoreboard.matches.score.RegularGameScore;
 import org.junit.jupiter.api.Test;
 
