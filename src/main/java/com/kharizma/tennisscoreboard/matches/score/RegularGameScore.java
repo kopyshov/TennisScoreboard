@@ -5,12 +5,8 @@ import static com.kharizma.tennisscoreboard.matches.score.GameState.*;
 import static com.kharizma.tennisscoreboard.matches.score.RegularGamePoints.*;
 
 public class RegularGameScore extends GameScore<RegularGamePoints> {
-    private static final int PLAYER_ONE = 0;
-    private static final int PLAYER_TWO = 1;
     private static final EnumMap<RegularGamePoints, String> ptsEnum = new EnumMap<>(RegularGamePoints.class);
     public RegularGameScore() {
-/*        score.set(PLAYER_ONE, LOVE);
-        score.set(PLAYER_TWO, LOVE);*/
     }
     static {
         ptsEnum.put(LOVE, "0");

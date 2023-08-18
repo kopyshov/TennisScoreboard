@@ -1,7 +1,6 @@
-package com.kharizma.tennisscoreboard.matches.enteties;
+package com.kharizma.tennisscoreboard.matches.dto;
 
 import com.kharizma.tennisscoreboard.matches.Match;
-import com.kharizma.tennisscoreboard.matches.MatchDao;
 
 import java.util.List;
 

@@ -10,8 +10,8 @@
 <body>
 <h1 class="content"><%= "Add new match" %></h1>
 <div class="content">
-    <c:set var="name1" value="${name1}" />
-    <c:set var="name2" value="${name2}" />
+    <c:set var="name1" value="${error_message.name1()}" />
+    <c:set var="name2" value="${error_message.name2()}" />
     <form method="post">
         <label>Имя Игрока 1:
             <input type="text" name="name1" value="${name1}" required title="Введите имя игрока"><br />
@@ -19,8 +19,7 @@
         <label>Имя Игрока 2:
             <input type="text" name="name2" value="${name2}" required title="Введите имя игрока"><br />
         </label>
-        <p class="errorMessage"><с:out value="${message}"/></p>
-        <%--<button class="redirect" onclick="location.href='/'">Назад</button>--%>
+        <p class="errorMessage"><с:out value="${error_message.message()}"/></p>
         <button class="redirect" type="submit">Начать</button>
     </form>
 </div>

@@ -11,7 +11,7 @@
   </style>
 </head>
 <body>
-<c:set var="player_name" value="${player_name}"/>
+<c:set var="player_name" value="${page.getFilterName()}"/>
 <div class="content">
   <form method="get" name="filter">
     <input type="hidden" name="page" value="1">
@@ -22,12 +22,15 @@
   </form>
 </div>
 <div class="content">
+  Проведено матчей: <c:out value = "${page.getMatchesQuantity()}"/>
+</div>
+<div class="content">
   <table>
     <tr>
       <th>Игрок #1</th>
       <th>Игрок #2</th>
     </tr>
-    <c:forEach var="match" items="${matches}">
+    <c:forEach var="match" items="${page.getMatches()}">
       <tr>
         <c:set  var="winner" value="${match.getWinner().getId()}"/>
         <c:choose>
@@ -41,7 +44,6 @@
             <td class="view"><c:out value = "${match.getPlayer(0).getName()}"/>
           </c:otherwise>
         </c:choose>
-
         <c:choose>
           <c:when test="${match.getPlayer(1).getId().equals(winner)}">
             <td class="view">
@@ -60,22 +62,19 @@
     </c:forEach>
     <tr>
       <td class="clean" colspan="3">
-        <%
-          String playerName = request.getParameter("filter_by_player_name");
-          if (playerName != null && !playerName.isEmpty()) {
-        %>
-        <c:forEach begin="1" end="${pages}" var="page">
-          <a href="${pageContext.request.contextPath}/matches?page=${page}&filter_by_player_name=${player_name}">${page}</a>
-        </c:forEach></td>
-        <%
-        } else {
-        %>
-      <c:forEach begin="1" end="${pages}" var="page">
-        <a href="${pageContext.request.contextPath}/matches?page=${page}">${page}</a>
-      </c:forEach>
-        <%
-          }
-        %>
+        <c:set var="player_name" value="${page.getFilterName()}"/>
+        <c:choose>
+          <c:when test="${player_name != null && !player_name.isEmpty()}">
+            <c:forEach begin="1" end="${page.getPagesQuantity()}" var="page">
+              <a href="${pageContext.request.contextPath}/matches?page=${page}&filter_by_player_name=${player_name}">${page}</a>
+            </c:forEach></td>
+          </c:when>
+          <c:otherwise>
+            <c:forEach begin="1" end="${page.getPagesQuantity()}" var="ordinal_page">
+              <a href="${pageContext.request.contextPath}/matches?page=${ordinal_page}">${ordinal_page}</a>
+            </c:forEach>
+          </c:otherwise>
+        </c:choose>
     </tr>
   </table>
   <br>

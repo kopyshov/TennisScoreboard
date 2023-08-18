@@ -1,7 +1,7 @@
 package com.kharizma.tennisscoreboard.matches;
 
 import com.kharizma.tennisscoreboard.controllers.MatchController;
-import com.kharizma.tennisscoreboard.matches.enteties.Page;
+import com.kharizma.tennisscoreboard.matches.dto.Page;
 import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

@@ -1,6 +1,7 @@
 package com.kharizma.tennisscoreboard.matches;
 
 import com.kharizma.tennisscoreboard.controllers.MatchController;
+import com.kharizma.tennisscoreboard.matches.dto.ErrorMessage;
 import com.kharizma.tennisscoreboard.matches.score.MatchScore;
 import com.kharizma.tennisscoreboard.players.Player;
 import jakarta.servlet.RequestDispatcher;
@@ -61,9 +62,8 @@ public class CurrentMatchController implements MatchController {
     private void sendErrorMessage(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         String name1 = servletRequest.getParameter("name1");
         String name2 = servletRequest.getParameter("name2");
-        servletRequest.setAttribute("message", message);
-        servletRequest.setAttribute("name1", name1);
-        servletRequest.setAttribute("name2", name2);
+        ErrorMessage errorMessage = new ErrorMessage(name1, name2, message);
+        servletRequest.setAttribute("error_message", errorMessage);
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/create.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);
     }
