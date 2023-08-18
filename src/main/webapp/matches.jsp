@@ -80,10 +80,10 @@
   <br>
 </div>
 <div class="content">
-  <button class="redirect" onclick="location.href='/new-match'">Добавить матч</button>
+  <button class="redirect" onclick="location.href='${pageContext.request.contextPath}/new-match'">Добавить матч</button>
 </div>
 <div class="content">
-  <button class="redirect" onclick="location.href='/matches?page=1'">Показать все матчи</button>
+  <button class="redirect" onclick="location.href='${pageContext.request.contextPath}/matches?page=1'">Показать все матчи</button>
 </div>
 </body>
 </html>
