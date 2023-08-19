@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    background-image: url(./images/left.jpg), url(./images/right.jpg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top, right top;
+    background-size: auto 100vh, auto 100vh;
+}
  .content {
     width: 100%;
     display: flex;
@@ -66,3 +73,4 @@ td {
     border: none;
     cursor: pointer;
 }
+
