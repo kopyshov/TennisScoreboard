@@ -80,6 +80,7 @@
   <br>
 </div>
 <div class="content">
+  <button class="redirect" type="reset" onclick="location.href='${pageContext.request.contextPath}/'">На главную</button>
   <button class="redirect" onclick="location.href='${pageContext.request.contextPath}/new-match'">Добавить матч</button>
 </div>
 <div class="content">

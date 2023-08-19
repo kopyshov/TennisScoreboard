@@ -20,7 +20,7 @@
             <input type="text" name="name2" value="${name2}" required title="Введите имя игрока"><br />
         </label>
         <p class="errorMessage"><с:out value="${error_message.message()}"/></p>
-        <button class="redirect" type="reset" onclick="location.href='${pageContext.request.contextPath}/'">Назад</button>
+        <button class="redirect" type="reset" onclick="location.href='${pageContext.request.contextPath}/'">На главную</button>
         <button class="redirect" type="submit">Начать</button>
     </form>
 </div>
