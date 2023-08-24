@@ -10,25 +10,13 @@ import org.hibernate.query.Query;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class MatchDao {
-    private final PlayerDao playerDao;
+public enum MatchDao {
+    INSTANCE;
 
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_FILTER_BY_NAME = "SELECT COUNT(*) FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_MATCHES = "SELECT COUNT(*) FROM Match";
     private static final String ALL_MATCHES = "FROM Match";
-
-    private static MatchDao instance;
-    private MatchDao() {
-        playerDao = PlayerDao.getInstance();
-    }
-
-    public static MatchDao getInstance() {
-        if (instance == null) {
-            instance = new MatchDao();
-        }
-        return instance;
-    }
 
     public void save(Match currentMatch) {
         Transaction transaction = null;
@@ -61,11 +49,11 @@ public class MatchDao {
         IntStream
                 .rangeClosed(PLAYER_ONE, PLAYER_TWO)
                 .forEach(player -> {
-                    Player findPlayer = playerDao.getPlayer(match.getPlayer(player));
+                    Player findPlayer = PlayerDao.INSTANCE.getPlayer(match.getPlayer(player));
                     if (findPlayer.getId() != null) {
                         match.getPlayer(player).setId(findPlayer.getId());
                     } else {
-                        playerDao.insertPlayer(match.getPlayer(player));
+                        PlayerDao.INSTANCE.insertPlayer(match.getPlayer(player));
                     }
                 });
     }

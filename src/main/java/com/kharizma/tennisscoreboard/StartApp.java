@@ -30,8 +30,8 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
         try(Session session = DatabaseHandler.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
-            MatchDao matchDao = MatchDao.getInstance();
-            PlayerDao playerDao = PlayerDao.getInstance();
+            MatchDao matchDao = MatchDao.INSTANCE;
+            PlayerDao playerDaoEnum = PlayerDao.INSTANCE;
 
             Player p1 = new Player();
             p1.setName("А. Петров");
@@ -48,11 +48,11 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
             Player p5 = new Player();
             p5.setName("Б. Баранов");
 
-            playerDao.insertPlayer(p1);
-            playerDao.insertPlayer(p2);
-            playerDao.insertPlayer(p3);
-            playerDao.insertPlayer(p4);
-            playerDao.insertPlayer(p5);
+            playerDaoEnum.insertPlayer(p1);
+            playerDaoEnum.insertPlayer(p2);
+            playerDaoEnum.insertPlayer(p3);
+            playerDaoEnum.insertPlayer(p4);
+            playerDaoEnum.insertPlayer(p5);
 
             Match m1 = new Match();
             m1.setId(UUID.randomUUID());
