@@ -8,15 +8,9 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class PlayerDao {
-    private static PlayerDao instance;
-    private PlayerDao() {}
-    public static PlayerDao getInstance() {
-        if (instance == null) {
-            instance = new PlayerDao();
-        }
-        return instance;
-    }
+public enum PlayerDao {
+    INSTANCE;
+
     public Player insertPlayer(Player player) throws HibernateException {
         Transaction transaction;
         try (Session session = DatabaseHandler.getSessionFactory().openSession()) {

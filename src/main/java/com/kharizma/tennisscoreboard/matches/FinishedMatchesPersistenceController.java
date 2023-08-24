@@ -16,7 +16,7 @@ public class FinishedMatchesPersistenceController implements MatchController {
     private final MatchDao matchDao;
 
     public FinishedMatchesPersistenceController() {
-        matchDao = MatchDao.getInstance();
+        matchDao = MatchDao.INSTANCE;
     }
 
     @Override
@@ -78,7 +78,6 @@ public class FinishedMatchesPersistenceController implements MatchController {
         UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
         CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
         Match currentMatch = currentMatchController.getMatch(MatchUuid);
-        MatchDao matchDao = MatchDao.getInstance();
         matchDao.save(currentMatch);
         currentMatchController.removeMatch(currentMatch.getId());
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/index.jsp");
