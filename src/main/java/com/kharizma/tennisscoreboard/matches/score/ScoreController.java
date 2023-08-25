@@ -12,12 +12,10 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class ScoreController implements MatchController {
-
-    private Match currentMatch;
-
     private static final int PLAYER_ONE = 0;
     private static final int PLAYER_TWO = 1;
 
+    CurrentMatchController currentMatchController = CurrentMatchController.INSTANCE;
 
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
@@ -28,6 +26,8 @@ public class ScoreController implements MatchController {
 
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
+        UUID currentMatchId = UUID.fromString(servletRequest.getParameter("uuid"));
+        Match currentMatch = currentMatchController.getMatch(currentMatchId);
         UUID uuid = UUID.fromString(servletRequest.getParameter("playerId"));
         GameState gameState = GameState.ON_GOING;
         if(currentMatch.getPlayer(PLAYER_ONE).getCurrentId().equals(uuid)) {
@@ -46,9 +46,8 @@ public class ScoreController implements MatchController {
     }
 
     private void setAttributes(HttpServletRequest servletRequest, GameState gameState) {
-        CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
         UUID currentMatchId = UUID.fromString(servletRequest.getParameter("uuid"));
-        currentMatch = currentMatchController.getMatch(currentMatchId);
+        Match currentMatch = currentMatchController.getMatch(currentMatchId);
         currentMatch.setWinnerPlayer(gameState);
         servletRequest.setAttribute("match", currentMatch);
     }

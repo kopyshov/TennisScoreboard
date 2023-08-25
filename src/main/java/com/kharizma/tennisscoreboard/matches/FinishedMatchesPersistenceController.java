@@ -76,7 +76,7 @@ public class FinishedMatchesPersistenceController implements MatchController {
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
         UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
-        CurrentMatchController currentMatchController = CurrentMatchController.getInstance();
+        CurrentMatchController currentMatchController = CurrentMatchController.INSTANCE;
         Match currentMatch = currentMatchController.getMatch(MatchUuid);
         matchDao.save(currentMatch);
         currentMatchController.removeMatch(currentMatch.getId());

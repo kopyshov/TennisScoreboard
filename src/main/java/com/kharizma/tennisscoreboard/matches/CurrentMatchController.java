@@ -14,18 +14,10 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CurrentMatchController implements MatchController {
-    public static CurrentMatchController instance;
+public enum CurrentMatchController implements MatchController {
+    INSTANCE;
     private String message;
     private final Map<UUID, Match> matches = new ConcurrentHashMap<>();
-    private CurrentMatchController() {
-    }
-    public static CurrentMatchController getInstance() {
-        if(instance == null) {
-            instance = new CurrentMatchController();
-        }
-        return instance;
-    }
     @Override
     public void executeGet( HttpServletRequest servletRequest,
                             HttpServletResponse servletResponse) throws ServletException, IOException {

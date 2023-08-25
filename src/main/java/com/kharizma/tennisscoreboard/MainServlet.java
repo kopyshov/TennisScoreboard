@@ -20,7 +20,7 @@ public class MainServlet extends HttpServlet {
     @Override
     public void init() {
         controllersMapper.addServices("/", new StartPageController());
-        controllersMapper.addServices("/new-match", CurrentMatchController.getInstance());
+        controllersMapper.addServices("/new-match", CurrentMatchController.INSTANCE);
         controllersMapper.addServices("/match-score", new ScoreController());
         controllersMapper.addServices("/matches", new FinishedMatchesPersistenceController());
     }
