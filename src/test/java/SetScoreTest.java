@@ -1,5 +1,5 @@
-import com.kharizma.tennisscoreboard.matches.score.GameState;
-import com.kharizma.tennisscoreboard.matches.score.SetScore;
+import com.tennisscoreboard.matches.score.GameState;
+import com.tennisscoreboard.matches.score.SetScore;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

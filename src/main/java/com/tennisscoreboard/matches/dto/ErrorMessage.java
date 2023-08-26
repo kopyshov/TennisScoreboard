@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.matches.dto;
+package com.tennisscoreboard.matches.dto;
 
 public record ErrorMessage(String name1, String name2, String message) {
 

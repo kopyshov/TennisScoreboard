@@ -1,8 +1,8 @@
-package com.kharizma.tennisscoreboard.matches;
+package com.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.players.Player;
-import com.kharizma.tennisscoreboard.players.PlayerDao;
-import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import com.tennisscoreboard.players.Player;
+import com.tennisscoreboard.players.PlayerDao;
+import com.tennisscoreboard.util.DatabaseHandler;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

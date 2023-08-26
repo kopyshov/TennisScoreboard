@@ -1,6 +1,5 @@
-package com.kharizma.tennisscoreboard.util;
+package com.tennisscoreboard.util;
 
-import com.kharizma.tennisscoreboard.matches.MatchDao;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 

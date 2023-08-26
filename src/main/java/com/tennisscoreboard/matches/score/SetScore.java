@@ -1,6 +1,6 @@
-package com.kharizma.tennisscoreboard.matches.score;
+package com.tennisscoreboard.matches.score;
 
-import static com.kharizma.tennisscoreboard.matches.score.GameState.*;
+import static com.tennisscoreboard.matches.score.GameState.*;
 
 public class SetScore extends Score<Integer> {
     private static final int PLAYER_ONE = 0;

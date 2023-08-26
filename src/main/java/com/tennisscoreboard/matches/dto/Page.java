@@ -1,15 +1,15 @@
-package com.kharizma.tennisscoreboard.matches.dto;
+package com.tennisscoreboard.matches.dto;
 
-import com.kharizma.tennisscoreboard.matches.Match;
+import com.tennisscoreboard.matches.Match;
 
 import java.util.List;
 
 public class Page {
 
-    private long pagesQuantity;
-    private String filterName;
-    private Long matchesQuantity;
-    private List<Match> matches;
+    private final long pagesQuantity;
+    private final String filterName;
+    private final Long matchesQuantity;
+    private final List<Match> matches;
 
     public static class Builder {
         private long pagesQuantity = 1;

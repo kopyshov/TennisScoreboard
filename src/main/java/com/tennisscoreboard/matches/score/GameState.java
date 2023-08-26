@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.matches.score;
+package com.tennisscoreboard.matches.score;
 
 public enum GameState {
     ON_GOING,

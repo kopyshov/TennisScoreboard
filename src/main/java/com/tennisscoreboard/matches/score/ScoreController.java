@@ -1,8 +1,8 @@
-package com.kharizma.tennisscoreboard.matches.score;
+package com.tennisscoreboard.matches.score;
 
-import com.kharizma.tennisscoreboard.controllers.MatchController;
-import com.kharizma.tennisscoreboard.matches.CurrentMatchController;
-import com.kharizma.tennisscoreboard.matches.Match;
+import com.tennisscoreboard.controllers.MatchController;
+import com.tennisscoreboard.matches.CurrentMatchController;
+import com.tennisscoreboard.matches.Match;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

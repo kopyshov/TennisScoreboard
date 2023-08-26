@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.players;
+package com.tennisscoreboard.players;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;

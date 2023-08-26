@@ -1,8 +1,8 @@
-package com.kharizma.tennisscoreboard.matches;
+package com.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.matches.score.GameState;
-import com.kharizma.tennisscoreboard.matches.score.MatchScore;
-import com.kharizma.tennisscoreboard.players.Player;
+import com.tennisscoreboard.matches.score.GameState;
+import com.tennisscoreboard.matches.score.MatchScore;
+import com.tennisscoreboard.players.Player;
 import jakarta.persistence.*;
 import java.io.*;
 import java.util.Objects;

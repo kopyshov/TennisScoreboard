@@ -1,27 +1,29 @@
-package com.kharizma.tennisscoreboard.matches;
+package com.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.controllers.MatchController;
-import com.kharizma.tennisscoreboard.matches.dto.Page;
-import com.kharizma.tennisscoreboard.players.Player;
+import com.tennisscoreboard.controllers.MatchController;
+import com.tennisscoreboard.matches.dto.Page;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class FinishedMatchesPersistenceController implements MatchController {
     private static final int ONE_PAGE_LIMIT = 3;
-    private final MatchDao matchDao;
 
     public FinishedMatchesPersistenceController() {
-        matchDao = MatchDao.INSTANCE;
+
     }
 
     @Override
     public void executeGet(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-
         Page currentHtmlPage = generateHtmlPage(servletRequest);
         servletRequest.setAttribute("page", currentHtmlPage);
 
@@ -30,6 +32,10 @@ public class FinishedMatchesPersistenceController implements MatchController {
     }
 
     private Page generateHtmlPage(HttpServletRequest servletRequest) {
+
+        @SuppressWarnings("unchecked")
+        MatchDao matchDao = (MatchDao) servletRequest.getServletContext().getAttribute("matchDao");
+
         long pagesQuantity = 1;
         List<Match> matches;
         Long matchesQuantity = 0L;
@@ -70,6 +76,8 @@ public class FinishedMatchesPersistenceController implements MatchController {
 
     @Override
     public void executePost(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
+        @SuppressWarnings("unchecked")
+        MatchDao matchDao = (MatchDao) servletRequest.getServletContext().getAttribute("matchDao");
         UUID MatchUuid = UUID.fromString(servletRequest.getParameter("match-uuid"));
         CurrentMatchController currentMatchController = CurrentMatchController.INSTANCE;
         Match currentMatch = currentMatchController.getMatch(MatchUuid);

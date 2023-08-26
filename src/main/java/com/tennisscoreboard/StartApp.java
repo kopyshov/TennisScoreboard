@@ -1,10 +1,11 @@
-package com.kharizma.tennisscoreboard;
+package com.tennisscoreboard;
 
-import com.kharizma.tennisscoreboard.matches.Match;
-import com.kharizma.tennisscoreboard.matches.MatchDao;
-import com.kharizma.tennisscoreboard.players.Player;
-import com.kharizma.tennisscoreboard.players.PlayerDao;
-import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import com.tennisscoreboard.matches.Match;
+import com.tennisscoreboard.matches.MatchDao;
+import com.tennisscoreboard.players.Player;
+import com.tennisscoreboard.players.PlayerDao;
+import com.tennisscoreboard.util.DatabaseHandler;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -17,11 +18,12 @@ import java.util.UUID;
 
 @WebListener
 public class StartApp implements ServletContextListener, HttpSessionListener, HttpSessionAttributeListener {
-    public StartApp() {}
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        /* This method is called when the servlet context is initialized(when the Web application is deployed). */
+        MatchDao matchDao = MatchDao.INSTANCE;
+        final ServletContext servletContext = sce.getServletContext();
+        servletContext.setAttribute("matchDao", matchDao);
         //Добавляет тестовые матчи
         addSomeMatches();
     }

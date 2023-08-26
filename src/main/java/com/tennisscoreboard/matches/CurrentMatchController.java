@@ -1,9 +1,9 @@
-package com.kharizma.tennisscoreboard.matches;
+package com.tennisscoreboard.matches;
 
-import com.kharizma.tennisscoreboard.controllers.MatchController;
-import com.kharizma.tennisscoreboard.matches.dto.ErrorMessage;
-import com.kharizma.tennisscoreboard.matches.score.MatchScore;
-import com.kharizma.tennisscoreboard.players.Player;
+import com.tennisscoreboard.controllers.MatchController;
+import com.tennisscoreboard.matches.dto.ErrorMessage;
+import com.tennisscoreboard.matches.score.MatchScore;
+import com.tennisscoreboard.players.Player;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

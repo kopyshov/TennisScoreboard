@@ -1,8 +1,8 @@
-import com.kharizma.tennisscoreboard.matches.score.RegularGameScore;
+import com.tennisscoreboard.matches.score.RegularGameScore;
 import org.junit.jupiter.api.Test;
 
-import static com.kharizma.tennisscoreboard.matches.score.GameState.PLAYER_ONE_WIN;
-import static com.kharizma.tennisscoreboard.matches.score.RegularGamePoints.ADVANTAGE;
+import static com.tennisscoreboard.matches.score.GameState.PLAYER_ONE_WIN;
+import static com.tennisscoreboard.matches.score.RegularGamePoints.ADVANTAGE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RegularGamePointsScoreTest {

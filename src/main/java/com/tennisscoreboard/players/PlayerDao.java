@@ -1,6 +1,6 @@
-package com.kharizma.tennisscoreboard.players;
+package com.tennisscoreboard.players;
 
-import com.kharizma.tennisscoreboard.util.DatabaseHandler;
+import com.tennisscoreboard.util.DatabaseHandler;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

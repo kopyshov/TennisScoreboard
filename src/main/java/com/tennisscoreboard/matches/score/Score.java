@@ -1,4 +1,4 @@
-package com.kharizma.tennisscoreboard.matches.score;
+package com.tennisscoreboard.matches.score;
 
 import java.util.ArrayList;
 import java.util.List;

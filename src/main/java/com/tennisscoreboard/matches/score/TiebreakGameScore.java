@@ -1,7 +1,7 @@
-package com.kharizma.tennisscoreboard.matches.score;
+package com.tennisscoreboard.matches.score;
 
-import static com.kharizma.tennisscoreboard.matches.score.GameState.PLAYER_ONE_WIN;
-import static com.kharizma.tennisscoreboard.matches.score.GameState.PLAYER_TWO_WIN;
+import static com.tennisscoreboard.matches.score.GameState.PLAYER_ONE_WIN;
+import static com.tennisscoreboard.matches.score.GameState.PLAYER_TWO_WIN;
 
 public class TiebreakGameScore extends GameScore<Integer> {
 
