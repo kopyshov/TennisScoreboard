@@ -23,6 +23,12 @@ public class Player implements Serializable {
 
     public Player() {}
 
+    public static Player getEmptyPlayer() {
+        Player emptyPlayer = new Player();
+        emptyPlayer.setName("-");
+        return emptyPlayer;
+    }
+
     public UUID getId() {
         return id;
     }

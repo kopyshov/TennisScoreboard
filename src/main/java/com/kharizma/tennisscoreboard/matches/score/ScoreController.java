@@ -14,7 +14,6 @@ import java.util.UUID;
 public class ScoreController implements MatchController {
     private static final int PLAYER_ONE = 0;
     private static final int PLAYER_TWO = 1;
-
     CurrentMatchController currentMatchController = CurrentMatchController.INSTANCE;
 
     @Override

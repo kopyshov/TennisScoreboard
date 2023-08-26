@@ -51,6 +51,15 @@ public class Match implements Serializable {
         }
         return getPlayerTwo();
     }
+
+    public static Match getEmptyMatch() {
+        Match emptyMatch = new Match();
+        emptyMatch.setPlayerOne(Player.getEmptyPlayer());
+        emptyMatch.setPlayerTwo(Player.getEmptyPlayer());
+        emptyMatch.setWinner(Player.getEmptyPlayer());
+        return emptyMatch;
+    }
+
     private Player getPlayerOne() {
         return playerOne;
     }

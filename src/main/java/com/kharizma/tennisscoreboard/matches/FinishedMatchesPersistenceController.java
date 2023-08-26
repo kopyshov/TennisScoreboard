@@ -52,23 +52,18 @@ public class FinishedMatchesPersistenceController implements MatchController {
         }
         pagesQuantity = countPages(matchesQuantity);
 
-        Page htmlPage = new Page();
-        htmlPage.setMatches(matches);
-        htmlPage.setMatchesQuantity(matchesQuantity);
-        htmlPage.setPagesQuantity(pagesQuantity);
-        htmlPage.setFilterName(playerName);
+        Page htmlPage = new Page.Builder()
+                .matches(matches)
+                .matchesQuantity(matchesQuantity)
+                .pagesQuantity(pagesQuantity)
+                .filterName(playerName)
+                .build();
         return htmlPage;
     }
 
     private List<Match> createEmptyMatches() {
         List<Match> matches = new ArrayList<>();
-        Match emptyMatch = new Match();
-        Player emptyPlayer = new Player();
-        emptyPlayer.setName("-");
-        emptyMatch.setPlayerOne(emptyPlayer);
-        emptyMatch.setPlayerTwo(emptyPlayer);
-        emptyMatch.setWinner(emptyPlayer);
-        matches.add(emptyMatch);
+        matches.add(Match.getEmptyMatch());
         return matches;
     }
 
