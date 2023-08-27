@@ -1,5 +1,5 @@
 package com.tennisscoreboard.matches.dto;
 
-public record ErrorMessage(String name1, String name2, String message) {
+public record ErrorMessage(String message) {
 
 }

@@ -52,9 +52,7 @@ public enum CurrentMatchController implements MatchController {
     }
 
     private void sendErrorMessage(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws ServletException, IOException {
-        String name1 = servletRequest.getParameter("name1");
-        String name2 = servletRequest.getParameter("name2");
-        ErrorMessage errorMessage = new ErrorMessage(name1, name2, message);
+        ErrorMessage errorMessage = new ErrorMessage(message);
         servletRequest.setAttribute("error_message", errorMessage);
         RequestDispatcher requestDispatcher = servletRequest.getRequestDispatcher("/create.jsp");
         requestDispatcher.forward(servletRequest, servletResponse);

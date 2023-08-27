@@ -48,7 +48,7 @@ public class Player implements Serializable {
     @Override
     public boolean equals(Object o) {
         Player player = (Player) o;
-        return Objects.equals(name, player.name);
+        return Objects.equals(this.name, player.name);
     }
     @Override
     public int hashCode() {
