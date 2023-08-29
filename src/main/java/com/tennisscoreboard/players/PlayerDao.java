@@ -13,7 +13,7 @@ public enum PlayerDao {
 
     public Player insertPlayer(Player player) throws HibernateException {
         Transaction transaction;
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.persist(player);
             session.flush();
@@ -24,7 +24,7 @@ public enum PlayerDao {
 
     public static final String GET_PLAYER_BY_NAME = "from Player where name = :paramName";
     public Player getPlayer(Player player) {
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             Query<Player> query = session.createQuery(GET_PLAYER_BY_NAME, Player.class);
             query.setParameter("paramName", player.getName());
             List<Player> players = query.getResultList();

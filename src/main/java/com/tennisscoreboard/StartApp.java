@@ -29,7 +29,7 @@ public class StartApp implements ServletContextListener, HttpSessionListener, Ht
     }
 
     public void addSomeMatches() {
-        try(Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try(Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             Transaction tx = session.beginTransaction();
 
             MatchDao matchDao = MatchDao.INSTANCE;

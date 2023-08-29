@@ -12,7 +12,6 @@ import java.util.stream.IntStream;
 
 public enum MatchDao {
     INSTANCE;
-
     private static final String FILTER_BY_NAME = "FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_FILTER_BY_NAME = "SELECT COUNT(*) FROM Match m WHERE m.playerOne.name = :playerName or m.playerTwo.name = :playerName";
     private static final String COUNT_MATCHES = "SELECT COUNT(*) FROM Match";
@@ -20,7 +19,7 @@ public enum MatchDao {
 
     public void save(Match currentMatch) {
         Transaction transaction = null;
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             findOrInsertPlayer(currentMatch);
             session.persist(currentMatch);
@@ -61,7 +60,7 @@ public enum MatchDao {
     public Long getCountMatches() {
         Transaction transaction;
         Long countMatches = 0L;
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Long> query = session.createQuery(COUNT_MATCHES, Long.class);
             countMatches = query.uniqueResult();
@@ -75,7 +74,7 @@ public enum MatchDao {
     public List<Match> getAllMatchesWithOffset(int offset, int pageLimit) {
         Transaction transaction;
         List<Match> matches = null;
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Match> query = session.createQuery(ALL_MATCHES, Match.class);
             matches = query
@@ -92,7 +91,7 @@ public enum MatchDao {
     public Long getCountMatchesByNameFilter(String playerName) {
         Transaction transaction;
         Long countMatches = 0L;
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Long> query = session.createQuery(COUNT_FILTER_BY_NAME, Long.class);
             countMatches = query.setParameter("playerName", playerName).uniqueResult();
@@ -106,7 +105,7 @@ public enum MatchDao {
     public List<Match> getMatchesByNameFilterWithOffset(String playerName, int offset, int pageLimit) {
         Transaction transaction;
         List<Match> matches = null;
-        try (Session session = DatabaseHandler.getSessionFactory().openSession()) {
+        try (Session session = DatabaseHandler.INSTANCE.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             Query<Match> query = session.createQuery(FILTER_BY_NAME, Match.class);
             matches = query
