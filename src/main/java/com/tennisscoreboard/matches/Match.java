@@ -4,12 +4,19 @@ import com.tennisscoreboard.matches.score.GameState;
 import com.tennisscoreboard.matches.score.MatchScore;
 import com.tennisscoreboard.players.Player;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.io.*;
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "MATCH")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Match implements Serializable {
     @Id
     @Column(name = "MATCH_ID")
@@ -23,8 +30,6 @@ public class Match implements Serializable {
     @Transient
     private MatchScore matchScore;
 
-    public Match() {}
-
     public void setWinnerPlayer(GameState state) {
         if (state == GameState.PLAYER_ONE_WIN) {
             setWinner(getPlayerOne());
@@ -32,19 +37,7 @@ public class Match implements Serializable {
             setWinner(getPlayerTwo());
         }
     }
-    public MatchScore getMatchScore() {
-        return matchScore;
-    }
-    public void setMatchScore(MatchScore matchScore) {
-        this.matchScore = matchScore;
-    }
 
-    public UUID getId() {
-        return id;
-    }
-    public void setId(UUID uuid) {
-        this.id = uuid;
-    }
     public Player getPlayer(int player) {
         if (player == 0) {
             return getPlayerOne();
@@ -60,24 +53,6 @@ public class Match implements Serializable {
         return emptyMatch;
     }
 
-    private Player getPlayerOne() {
-        return playerOne;
-    }
-    public void setPlayerOne(Player playerOne) {
-        this.playerOne = playerOne;
-    }
-    private Player getPlayerTwo() {
-        return playerTwo;
-    }
-    public void setPlayerTwo(Player playerTwo) {
-        this.playerTwo = playerTwo;
-    }
-    public Player getWinner() {
-        return winner;
-    }
-    public void setWinner(Player winner) {
-        this.winner = winner;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

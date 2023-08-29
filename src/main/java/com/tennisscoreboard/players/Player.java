@@ -1,6 +1,9 @@
 package com.tennisscoreboard.players;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.io.*;
@@ -9,6 +12,9 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "PLAYER")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Player implements Serializable {
     @Id
     @GeneratedValue
@@ -21,30 +27,12 @@ public class Player implements Serializable {
     @Transient
     private UUID currentId;
 
-    public Player() {}
-
     public static Player getEmptyPlayer() {
         Player emptyPlayer = new Player();
         emptyPlayer.setName("-");
         return emptyPlayer;
     }
 
-    public UUID getId() {
-        return id;
-    }
-    public void setId(UUID id) {this.id = id;}
-    public UUID getCurrentId() {
-        return currentId;
-    }
-    public void setCurrentId(UUID currentId) {
-        this.currentId = currentId;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
     @Override
     public boolean equals(Object o) {
         Player player = (Player) o;
